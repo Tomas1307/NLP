@@ -135,29 +135,43 @@ class InvertedIndex:
                 - list: Processed text documents
                 - pd.DataFrame: Original DataFrame
         """
-        self.logger.info("Starting text preprocessing")
-        start_time = time.time()
+        try:
+                
+            try:
+                self.logger.info("----Trying to process with file----")
+                with open("data/text_process_docs_raw_texts.json") as file:
+                    text_processed = json.load(file) 
+                    print("TEXT",text_processed)
+                    return text_processed, dataFrame
 
-        text = dataFrame['text'] + " " + dataFrame['title']
-        text = np.array(text).tolist()
-        
-        total_documents = len(text)
-        text_processed = []
-        
-        for i, doc in enumerate(text, 1):
-            progress = (i / total_documents) * 100
-            self.logger.info(f"Processing document {i}/{total_documents} - {progress:.2f}% complete")
-            processed_doc = self.processor_.preprocessing_pipeline(doc)
-            text_processed.append(processed_doc)
+            except FileNotFoundError as e:
+                print(f"Error on apply_process {e}")
+                pass
+            self.logger.info("Starting text preprocessing")
+            start_time = time.time()
+
+            text = dataFrame['text'] + " " + dataFrame['title']
+            text = np.array(text).tolist()
             
-            # Log every 5% progress
-            if i % max(1, total_documents // 20) == 0:
-                self.logger.info(f"Overall progress: {progress:.2f}%")
+            total_documents = len(text)
+            text_processed = []
+            
+            for i, doc in enumerate(text, 1):
+                progress = (i / total_documents) * 100
+                self.logger.info(f"Processing document {i}/{total_documents} - {progress:.2f}% complete")
+                processed_doc = self.processor_.preprocessing_pipeline(doc)
+                text_processed.append(processed_doc)
+                
+                # Log every 5% progress
+                if i % max(1, total_documents // 20) == 0:
+                    self.logger.info(f"Overall progress: {progress:.2f}%")
 
-        end_time = time.time()
-        self.logger.info(f"Finished text preprocessing. Time taken: {end_time - start_time:.2f} seconds")
+            end_time = time.time()
+            self.logger.info(f"Finished text preprocessing. Time taken: {end_time - start_time:.2f} seconds")
 
-        return text_processed, dataFrame
+            return text_processed, dataFrame
+        except Exception as e:
+            print(f"Error on apply_process: {e}")
 
     def apply_vectorizer_and_process(self, dataFrame: pd.DataFrame) -> pd.DataFrame:
         """
@@ -250,7 +264,3 @@ class InvertedIndex:
         self.logger.info(f"Completed inverted index pipeline. Total time taken: {overall_end_time - overall_start_time:.2f} seconds")
 
         return inverted_index_to_return
-    
-
-index_ = InvertedIndex()
-index_.inverted_index_complete_pipeline()
