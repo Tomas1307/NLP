@@ -136,7 +136,8 @@ class InvertedIndex:
                 - pd.DataFrame: Original DataFrame
         """
         try:
-                
+
+
 
             self.logger.info("Starting text preprocessing")
             start_time = time.time()
@@ -150,6 +151,7 @@ class InvertedIndex:
             for i, doc in enumerate(text, 1):
                 progress = (i / total_documents) * 100
                 self.logger.info(f"Processing document {i}/{total_documents} - {progress:.2f}% complete")
+
                 processed_doc = word_tokenize(doc)
                 processed_doc = self.processor_.to_lowercase(processed_doc)
                 processed_doc = self.processor_.to_lowercase(processed_doc)
@@ -158,6 +160,7 @@ class InvertedIndex:
                 processed_doc = self.processor_.remove_stopwords(processed_doc)
                 processed_doc = self.processor_.lemmatize_verbs(processed_doc)
                 processed_doc = ' '.join(processed_doc)
+
                 text_processed.append(processed_doc)
                 
                 # Log every 5% progress
@@ -293,3 +296,4 @@ class InvertedIndex:
 # Ejecutar la pipeline completa y guardar el índice invertido
 index = InvertedIndex()
 inverted_index = index.inverted_index_complete_pipeline()
+
