@@ -1,16 +1,17 @@
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-import re, unicodedata, contractions
-from langdetect import detect_langs, LangDetectException
+import re, unicodedata
 import logging
+
 class Processor:
+
     def __init__(self) -> None:
         """
         Initializes the Processor class.
         """
         self.logger = logging.getLogger(__name__)
-        self.total_steps = 7
+        self.total_steps = 6
 
     def remove_non_ascii(self, words):
         """
@@ -89,32 +90,6 @@ class Processor:
         except Exception as e:
             print(f"Error on lemmatize_verbs: {e}")
 
-    def remove_non_english_words(self, words):
-        """
-        Removes words that are not detected as English from a list of tokenized words.
-
-        Args:
-            words (list): A list of tokenized words.
-
-        Returns:
-            list: A list of words that are detected as English.
-        """
-        try:
-            english_words = []
-            for word in words:
-                try:
-                    # Detect the possible languages of the word
-                    detected_langs = detect_langs(word)
-                    # If English is one of the detected languages and has a high probability, keep the word
-                    if any(lang.lang == 'en' and lang.prob > 0.9 for lang in detected_langs):
-                        english_words.append(word)
-                except LangDetectException:
-                    # If language detection fails, assume it's not English and don't include it
-                    continue
-            return english_words
-        except Exception as e:
-            print(f"Error on remove_non_english_words: {e}")
-            return words  # Return the original list if something goes wrong
 
     def preprocessing_pipeline(self, text):
         """
@@ -130,29 +105,33 @@ class Processor:
         try:
             self.logger.info("Starting preprocessing pipeline")
             
-            self.logger.info("Step 1/7: Tokenizing text")
-            words = word_tokenize(text)
+            self.logger.info("Step 1/6: Tokenizing text")
+            text = word_tokenize(text)
+
             
-            self.logger.info("Step 2/7: Converting to lowercase")
-            words = self.to_lowercase(words)
+            self.logger.info("Step 2/6: Converting to lowercase")
+            text = self.to_lowercase(text)
+
             
-            self.logger.info("Step 3/7: Removing punctuation")
-            words = self.remove_punctuation(words)
+            self.logger.info("Step 3/6: Removing punctuation")
+            text = self.remove_punctuation(text)
+
             
-            self.logger.info("Step 4/7: Removing non-ASCII characters")
-            words = self.remove_non_ascii(words)
+            self.logger.info("Step 4/6: Removing non-ASCII characters")
+            text = self.remove_non_ascii(text)
+
             
-            self.logger.info("Step 5/7: Removing non-English words")
-            words = self.remove_non_english_words(words)
+            self.logger.info("Step 5/6: Removing stopwords")
+            text = self.remove_stopwords(text)
+
+
             
-            self.logger.info("Step 6/7: Removing stopwords")
-            words = self.remove_stopwords(words)
-            
-            self.logger.info("Step 7/7: Lemmatizing verbs")
-            words = self.lemmatize_verbs(words)
+            self.logger.info("Step 6/6: Lemmatizing verbs")
+            text = self.lemmatize_verbs(text)
+
             
             self.logger.info("Preprocessing pipeline completed")
-            return ' '.join(words)
+            return ' '.join(text)
         except Exception as e:
             self.logger.error(f"Error in preprocessing_pipeline: {e}")
-            return text
+            print(f"Error on preprocessing_pipeline: {e}")

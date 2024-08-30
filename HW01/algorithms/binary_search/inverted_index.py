@@ -7,7 +7,7 @@ from utils_processor.processor import Processor
 import json
 import logging
 import time
-
+from nltk import word_tokenize
 class InvertedIndex:
     """
     A class for creating and managing an inverted index from text documents.
@@ -136,17 +136,9 @@ class InvertedIndex:
                 - pd.DataFrame: Original DataFrame
         """
         try:
-                
-            try:
-                self.logger.info("----Trying to process with file----")
-                with open("data/text_process_docs_raw_texts.json") as file:
-                    text_processed = json.load(file) 
-                    print("TEXT",text_processed)
-                    return text_processed, dataFrame
 
-            except FileNotFoundError as e:
-                print(f"Error on apply_process {e}")
-                pass
+
+
             self.logger.info("Starting text preprocessing")
             start_time = time.time()
 
@@ -159,7 +151,16 @@ class InvertedIndex:
             for i, doc in enumerate(text, 1):
                 progress = (i / total_documents) * 100
                 self.logger.info(f"Processing document {i}/{total_documents} - {progress:.2f}% complete")
-                processed_doc = self.processor_.preprocessing_pipeline(doc)
+
+                processed_doc = word_tokenize(doc)
+                processed_doc = self.processor_.to_lowercase(processed_doc)
+                processed_doc = self.processor_.to_lowercase(processed_doc)
+                processed_doc = self.processor_.remove_punctuation(processed_doc)
+                processed_doc = self.processor_.remove_non_ascii(processed_doc)
+                processed_doc = self.processor_.remove_stopwords(processed_doc)
+                processed_doc = self.processor_.lemmatize_verbs(processed_doc)
+                processed_doc = ' '.join(processed_doc)
+
                 text_processed.append(processed_doc)
                 
                 # Log every 5% progress
@@ -192,10 +193,15 @@ class InvertedIndex:
         start_time = time.time()
 
         text_process, dataframe_object_vectorizer = self.apply_process(dataFrame)
+        
         count_vect = CountVectorizer(lowercase=False, max_df=0.9)
+
         X = count_vect.fit_transform(text_process)
+
         vocabulario = count_vect.get_feature_names_out()
+
         dataframe_to_return = pd.DataFrame(X.toarray(), columns=[vocabulario])
+
         dataframe_to_return['identifier_files'] = dataframe_object_vectorizer['identifier'].values
         dataframe_to_return.columns = [col[0] if isinstance(col, tuple) else col for col in dataframe_to_return.columns]
 
@@ -234,6 +240,25 @@ class InvertedIndex:
 
         return inverted_index_dicc
 
+    def save_inverted_index(self, inverted_index: dict, filename: str = "inverted_index.json"):
+        """
+        Save the inverted index to a JSON file.
+
+        Args:
+            inverted_index (dict): The inverted index dictionary to save.
+            filename (str): The name of the JSON file to save the index to. Default is "inverted_index.json".
+
+        Returns:
+            None
+        """
+        self.logger.info(f"Saving inverted index to {filename}")
+        try:
+            with open(filename, 'w') as file:
+                json.dump(inverted_index, file, indent=4)
+            self.logger.info(f"Inverted index successfully saved to {filename}")
+        except Exception as e:
+            self.logger.error(f"Error saving inverted index to {filename}: {e}")
+
     def inverted_index_complete_pipeline(self) -> dict:
         """
         Execute the complete pipeline to create an inverted index.
@@ -260,7 +285,15 @@ class InvertedIndex:
         self.logger.info("Step 4: Creating inverted index")
         inverted_index_to_return = self.inverted_index(dataFrame)
 
+        self.logger.info("Step 5: Saving inverted index")
+        self.save_inverted_index(inverted_index_to_return)
+
         overall_end_time = time.time()
         self.logger.info(f"Completed inverted index pipeline. Total time taken: {overall_end_time - overall_start_time:.2f} seconds")
-
+        
         return inverted_index_to_return
+
+# Ejecutar la pipeline completa y guardar el índice invertido
+index = InvertedIndex()
+inverted_index = index.inverted_index_complete_pipeline()
+
