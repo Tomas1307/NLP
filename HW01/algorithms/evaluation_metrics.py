@@ -12,9 +12,6 @@ class EvaluationMetrics:
     """
      
     def __init__(self) -> None:
-        """
-        Initialize the EvaluationMetrics class.
-        """
         pass
 
     @staticmethod
