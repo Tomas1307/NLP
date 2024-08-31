@@ -292,11 +292,3 @@ class InvertedIndex:
         self.logger.info(f"Completed inverted index pipeline. Total time taken: {overall_end_time - overall_start_time:.2f} seconds")
         
         return inverted_index_to_return
-<<<<<<< HEAD
-=======
-
-# Ejecutar la pipeline completa y guardar el índice invertido
-index = InvertedIndex()
-inverted_index = index.inverted_index_complete_pipeline()
-
->>>>>>> 0f29366843fbf693f5cfae6ace96d744ff8dfac3
