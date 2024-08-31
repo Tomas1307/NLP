@@ -2,8 +2,8 @@ class BinarySearch:
     def __init__(self) -> None:
         pass
 
-    @staticmethod
-    def intersect(p1, p2):
+
+    def intersect_two_lists(self, p1, p2):
         """
         Perform the merge operation (intersection) between two posting lists.
 
@@ -28,3 +28,26 @@ class BinarySearch:
                 j += 1
 
         return answer
+
+    
+    def intersect_multiple_lists(self, lists):
+        """
+        Realiza la intersección de múltiples listas.
+        
+        Args:
+            lists (list of lists): Lista de listas de posting a intersectar.
+        
+        Returns:
+            list: Lista resultante de la intersección de todas las listas de entrada.
+        """
+        if not lists:
+            return []
+        
+        if len(lists) == 1:
+            return lists[0]
+        
+        result = lists[0]
+        for i in range(1, len(lists)):
+            result = self.intersect_two_lists(result, lists[i])
+        
+        return result
