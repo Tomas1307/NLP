@@ -194,7 +194,7 @@ class InvertedIndex:
 
         text_process, dataframe_object_vectorizer = self.apply_process(dataFrame)
         
-        count_vect = CountVectorizer(lowercase=False, max_df=0.9)
+        count_vect = CountVectorizer(lowercase=False)
 
         X = count_vect.fit_transform(text_process)
 
@@ -292,8 +292,3 @@ class InvertedIndex:
         self.logger.info(f"Completed inverted index pipeline. Total time taken: {overall_end_time - overall_start_time:.2f} seconds")
         
         return inverted_index_to_return
-
-# Ejecutar la pipeline completa y guardar el índice invertido
-index = InvertedIndex()
-inverted_index = index.inverted_index_complete_pipeline()
-
