@@ -10970,3 +10970,389 @@
 2024-09-03 15:02:42,945 - InvertedIndex - INFO - Saving inverted index to inverted_index.json
 2024-09-03 15:02:43,031 - InvertedIndex - INFO - Inverted index successfully saved to inverted_index.json
 2024-09-03 15:02:43,031 - InvertedIndex - INFO - Completed inverted index pipeline. Total time taken: 25.50 seconds
+2024-09-02 15:12:09,054 - InvertedIndex - INFO - Starting complete inverted index pipeline
+2024-09-02 15:12:09,055 - InvertedIndex - INFO - Step 1: Reading files
+2024-09-02 15:12:09,056 - InvertedIndex - INFO - Reading files from directory: data/docs-raw-texts/
+2024-09-02 15:12:11,493 - InvertedIndex - INFO - Finished reading files. Time taken: 2.44 seconds
+2024-09-02 15:12:11,493 - InvertedIndex - INFO - Step 2: Replacing titles in text
+2024-09-02 15:12:11,495 - InvertedIndex - INFO - Replacing titles in text and cleaning newlines
+2024-09-02 15:12:11,552 - InvertedIndex - INFO - Finished replacing titles. Time taken: 0.06 seconds
+2024-09-02 15:12:11,552 - InvertedIndex - INFO - Step 3: Applying vectorizer and processing
+2024-09-02 15:12:11,553 - InvertedIndex - INFO - Applying vectorizer and processing
+2024-09-02 15:12:11,553 - InvertedIndex - INFO - Starting text preprocessing
+2024-09-02 15:12:11,558 - InvertedIndex - INFO - Processing document 1/331 - 0.30% complete
+2024-09-02 15:12:12,703 - InvertedIndex - INFO - Processing document 2/331 - 0.60% complete
+2024-09-02 15:12:12,709 - InvertedIndex - INFO - Processing document 3/331 - 0.91% complete
+2024-09-02 15:12:12,720 - InvertedIndex - INFO - Processing document 4/331 - 1.21% complete
+2024-09-02 15:12:12,726 - InvertedIndex - INFO - Processing document 5/331 - 1.51% complete
+2024-09-02 15:12:12,733 - InvertedIndex - INFO - Processing document 6/331 - 1.81% complete
+2024-09-02 15:12:12,740 - InvertedIndex - INFO - Processing document 7/331 - 2.11% complete
+2024-09-02 15:12:12,745 - InvertedIndex - INFO - Processing document 8/331 - 2.42% complete
+2024-09-02 15:12:12,751 - InvertedIndex - INFO - Processing document 9/331 - 2.72% complete
+2024-09-02 15:12:12,756 - InvertedIndex - INFO - Processing document 10/331 - 3.02% complete
+2024-09-02 15:12:12,764 - InvertedIndex - INFO - Processing document 11/331 - 3.32% complete
+2024-09-02 15:12:12,769 - InvertedIndex - INFO - Processing document 12/331 - 3.63% complete
+2024-09-02 15:12:12,777 - InvertedIndex - INFO - Processing document 13/331 - 3.93% complete
+2024-09-02 15:12:12,782 - InvertedIndex - INFO - Processing document 14/331 - 4.23% complete
+2024-09-02 15:12:12,787 - InvertedIndex - INFO - Processing document 15/331 - 4.53% complete
+2024-09-02 15:12:12,797 - InvertedIndex - INFO - Processing document 16/331 - 4.83% complete
+2024-09-02 15:12:12,805 - InvertedIndex - INFO - Overall progress: 4.83%
+2024-09-02 15:12:12,806 - InvertedIndex - INFO - Processing document 17/331 - 5.14% complete
+2024-09-02 15:12:12,816 - InvertedIndex - INFO - Processing document 18/331 - 5.44% complete
+2024-09-02 15:12:12,823 - InvertedIndex - INFO - Processing document 19/331 - 5.74% complete
+2024-09-02 15:12:12,830 - InvertedIndex - INFO - Processing document 20/331 - 6.04% complete
+2024-09-02 15:12:12,836 - InvertedIndex - INFO - Processing document 21/331 - 6.34% complete
+2024-09-02 15:12:12,845 - InvertedIndex - INFO - Processing document 22/331 - 6.65% complete
+2024-09-02 15:12:12,851 - InvertedIndex - INFO - Processing document 23/331 - 6.95% complete
+2024-09-02 15:12:12,857 - InvertedIndex - INFO - Processing document 24/331 - 7.25% complete
+2024-09-02 15:12:12,866 - InvertedIndex - INFO - Processing document 25/331 - 7.55% complete
+2024-09-02 15:12:12,873 - InvertedIndex - INFO - Processing document 26/331 - 7.85% complete
+2024-09-02 15:12:12,881 - InvertedIndex - INFO - Processing document 27/331 - 8.16% complete
+2024-09-02 15:12:12,887 - InvertedIndex - INFO - Processing document 28/331 - 8.46% complete
+2024-09-02 15:12:12,893 - InvertedIndex - INFO - Processing document 29/331 - 8.76% complete
+2024-09-02 15:12:12,900 - InvertedIndex - INFO - Processing document 30/331 - 9.06% complete
+2024-09-02 15:12:12,905 - InvertedIndex - INFO - Processing document 31/331 - 9.37% complete
+2024-09-02 15:12:12,912 - InvertedIndex - INFO - Processing document 32/331 - 9.67% complete
+2024-09-02 15:12:12,918 - InvertedIndex - INFO - Overall progress: 9.67%
+2024-09-02 15:12:12,919 - InvertedIndex - INFO - Processing document 33/331 - 9.97% complete
+2024-09-02 15:12:12,928 - InvertedIndex - INFO - Processing document 34/331 - 10.27% complete
+2024-09-02 15:12:12,935 - InvertedIndex - INFO - Processing document 35/331 - 10.57% complete
+2024-09-02 15:12:12,942 - InvertedIndex - INFO - Processing document 36/331 - 10.88% complete
+2024-09-02 15:12:12,948 - InvertedIndex - INFO - Processing document 37/331 - 11.18% complete
+2024-09-02 15:12:12,954 - InvertedIndex - INFO - Processing document 38/331 - 11.48% complete
+2024-09-02 15:12:12,961 - InvertedIndex - INFO - Processing document 39/331 - 11.78% complete
+2024-09-02 15:12:12,971 - InvertedIndex - INFO - Processing document 40/331 - 12.08% complete
+2024-09-02 15:12:12,976 - InvertedIndex - INFO - Processing document 41/331 - 12.39% complete
+2024-09-02 15:12:12,983 - InvertedIndex - INFO - Processing document 42/331 - 12.69% complete
+2024-09-02 15:12:12,992 - InvertedIndex - INFO - Processing document 43/331 - 12.99% complete
+2024-09-02 15:12:12,997 - InvertedIndex - INFO - Processing document 44/331 - 13.29% complete
+2024-09-02 15:12:13,003 - InvertedIndex - INFO - Processing document 45/331 - 13.60% complete
+2024-09-02 15:12:13,011 - InvertedIndex - INFO - Processing document 46/331 - 13.90% complete
+2024-09-02 15:12:13,019 - InvertedIndex - INFO - Processing document 47/331 - 14.20% complete
+2024-09-02 15:12:13,024 - InvertedIndex - INFO - Processing document 48/331 - 14.50% complete
+2024-09-02 15:12:13,035 - InvertedIndex - INFO - Overall progress: 14.50%
+2024-09-02 15:12:13,037 - InvertedIndex - INFO - Processing document 49/331 - 14.80% complete
+2024-09-02 15:12:13,046 - InvertedIndex - INFO - Processing document 50/331 - 15.11% complete
+2024-09-02 15:12:13,051 - InvertedIndex - INFO - Processing document 51/331 - 15.41% complete
+2024-09-02 15:12:13,057 - InvertedIndex - INFO - Processing document 52/331 - 15.71% complete
+2024-09-02 15:12:13,069 - InvertedIndex - INFO - Processing document 53/331 - 16.01% complete
+2024-09-02 15:12:13,078 - InvertedIndex - INFO - Processing document 54/331 - 16.31% complete
+2024-09-02 15:12:13,085 - InvertedIndex - INFO - Processing document 55/331 - 16.62% complete
+2024-09-02 15:12:13,094 - InvertedIndex - INFO - Processing document 56/331 - 16.92% complete
+2024-09-02 15:12:13,101 - InvertedIndex - INFO - Processing document 57/331 - 17.22% complete
+2024-09-02 15:12:13,107 - InvertedIndex - INFO - Processing document 58/331 - 17.52% complete
+2024-09-02 15:12:13,112 - InvertedIndex - INFO - Processing document 59/331 - 17.82% complete
+2024-09-02 15:12:13,118 - InvertedIndex - INFO - Processing document 60/331 - 18.13% complete
+2024-09-02 15:12:13,127 - InvertedIndex - INFO - Processing document 61/331 - 18.43% complete
+2024-09-02 15:12:13,134 - InvertedIndex - INFO - Processing document 62/331 - 18.73% complete
+2024-09-02 15:12:13,140 - InvertedIndex - INFO - Processing document 63/331 - 19.03% complete
+2024-09-02 15:12:13,148 - InvertedIndex - INFO - Processing document 64/331 - 19.34% complete
+2024-09-02 15:12:13,159 - InvertedIndex - INFO - Overall progress: 19.34%
+2024-09-02 15:12:13,160 - InvertedIndex - INFO - Processing document 65/331 - 19.64% complete
+2024-09-02 15:12:13,170 - InvertedIndex - INFO - Processing document 66/331 - 19.94% complete
+2024-09-02 15:12:13,178 - InvertedIndex - INFO - Processing document 67/331 - 20.24% complete
+2024-09-02 15:12:13,189 - InvertedIndex - INFO - Processing document 68/331 - 20.54% complete
+2024-09-02 15:12:13,197 - InvertedIndex - INFO - Processing document 69/331 - 20.85% complete
+2024-09-02 15:12:13,205 - InvertedIndex - INFO - Processing document 70/331 - 21.15% complete
+2024-09-02 15:12:13,211 - InvertedIndex - INFO - Processing document 71/331 - 21.45% complete
+2024-09-02 15:12:13,218 - InvertedIndex - INFO - Processing document 72/331 - 21.75% complete
+2024-09-02 15:12:13,224 - InvertedIndex - INFO - Processing document 73/331 - 22.05% complete
+2024-09-02 15:12:13,232 - InvertedIndex - INFO - Processing document 74/331 - 22.36% complete
+2024-09-02 15:12:13,241 - InvertedIndex - INFO - Processing document 75/331 - 22.66% complete
+2024-09-02 15:12:13,249 - InvertedIndex - INFO - Processing document 76/331 - 22.96% complete
+2024-09-02 15:12:13,257 - InvertedIndex - INFO - Processing document 77/331 - 23.26% complete
+2024-09-02 15:12:13,265 - InvertedIndex - INFO - Processing document 78/331 - 23.56% complete
+2024-09-02 15:12:13,273 - InvertedIndex - INFO - Processing document 79/331 - 23.87% complete
+2024-09-02 15:12:13,281 - InvertedIndex - INFO - Processing document 80/331 - 24.17% complete
+2024-09-02 15:12:13,290 - InvertedIndex - INFO - Overall progress: 24.17%
+2024-09-02 15:12:13,291 - InvertedIndex - INFO - Processing document 81/331 - 24.47% complete
+2024-09-02 15:12:13,297 - InvertedIndex - INFO - Processing document 82/331 - 24.77% complete
+2024-09-02 15:12:13,304 - InvertedIndex - INFO - Processing document 83/331 - 25.08% complete
+2024-09-02 15:12:13,309 - InvertedIndex - INFO - Processing document 84/331 - 25.38% complete
+2024-09-02 15:12:13,317 - InvertedIndex - INFO - Processing document 85/331 - 25.68% complete
+2024-09-02 15:12:13,327 - InvertedIndex - INFO - Processing document 86/331 - 25.98% complete
+2024-09-02 15:12:13,333 - InvertedIndex - INFO - Processing document 87/331 - 26.28% complete
+2024-09-02 15:12:13,341 - InvertedIndex - INFO - Processing document 88/331 - 26.59% complete
+2024-09-02 15:12:13,348 - InvertedIndex - INFO - Processing document 89/331 - 26.89% complete
+2024-09-02 15:12:13,356 - InvertedIndex - INFO - Processing document 90/331 - 27.19% complete
+2024-09-02 15:12:13,363 - InvertedIndex - INFO - Processing document 91/331 - 27.49% complete
+2024-09-02 15:12:13,371 - InvertedIndex - INFO - Processing document 92/331 - 27.79% complete
+2024-09-02 15:12:13,381 - InvertedIndex - INFO - Processing document 93/331 - 28.10% complete
+2024-09-02 15:12:13,389 - InvertedIndex - INFO - Processing document 94/331 - 28.40% complete
+2024-09-02 15:12:13,397 - InvertedIndex - INFO - Processing document 95/331 - 28.70% complete
+2024-09-02 15:12:13,403 - InvertedIndex - INFO - Processing document 96/331 - 29.00% complete
+2024-09-02 15:12:13,411 - InvertedIndex - INFO - Overall progress: 29.00%
+2024-09-02 15:12:13,411 - InvertedIndex - INFO - Processing document 97/331 - 29.31% complete
+2024-09-02 15:12:13,418 - InvertedIndex - INFO - Processing document 98/331 - 29.61% complete
+2024-09-02 15:12:13,426 - InvertedIndex - INFO - Processing document 99/331 - 29.91% complete
+2024-09-02 15:12:13,434 - InvertedIndex - INFO - Processing document 100/331 - 30.21% complete
+2024-09-02 15:12:13,442 - InvertedIndex - INFO - Processing document 101/331 - 30.51% complete
+2024-09-02 15:12:13,449 - InvertedIndex - INFO - Processing document 102/331 - 30.82% complete
+2024-09-02 15:12:13,455 - InvertedIndex - INFO - Processing document 103/331 - 31.12% complete
+2024-09-02 15:12:13,462 - InvertedIndex - INFO - Processing document 104/331 - 31.42% complete
+2024-09-02 15:12:13,468 - InvertedIndex - INFO - Processing document 105/331 - 31.72% complete
+2024-09-02 15:12:13,477 - InvertedIndex - INFO - Processing document 106/331 - 32.02% complete
+2024-09-02 15:12:13,483 - InvertedIndex - INFO - Processing document 107/331 - 32.33% complete
+2024-09-02 15:12:13,491 - InvertedIndex - INFO - Processing document 108/331 - 32.63% complete
+2024-09-02 15:12:13,500 - InvertedIndex - INFO - Processing document 109/331 - 32.93% complete
+2024-09-02 15:12:13,509 - InvertedIndex - INFO - Processing document 110/331 - 33.23% complete
+2024-09-02 15:12:13,516 - InvertedIndex - INFO - Processing document 111/331 - 33.53% complete
+2024-09-02 15:12:13,524 - InvertedIndex - INFO - Processing document 112/331 - 33.84% complete
+2024-09-02 15:12:13,529 - InvertedIndex - INFO - Overall progress: 33.84%
+2024-09-02 15:12:13,530 - InvertedIndex - INFO - Processing document 113/331 - 34.14% complete
+2024-09-02 15:12:13,537 - InvertedIndex - INFO - Processing document 114/331 - 34.44% complete
+2024-09-02 15:12:13,542 - InvertedIndex - INFO - Processing document 115/331 - 34.74% complete
+2024-09-02 15:12:13,549 - InvertedIndex - INFO - Processing document 116/331 - 35.05% complete
+2024-09-02 15:12:13,558 - InvertedIndex - INFO - Processing document 117/331 - 35.35% complete
+2024-09-02 15:12:13,566 - InvertedIndex - INFO - Processing document 118/331 - 35.65% complete
+2024-09-02 15:12:13,576 - InvertedIndex - INFO - Processing document 119/331 - 35.95% complete
+2024-09-02 15:12:13,582 - InvertedIndex - INFO - Processing document 120/331 - 36.25% complete
+2024-09-02 15:12:13,589 - InvertedIndex - INFO - Processing document 121/331 - 36.56% complete
+2024-09-02 15:12:13,597 - InvertedIndex - INFO - Processing document 122/331 - 36.86% complete
+2024-09-02 15:12:13,605 - InvertedIndex - INFO - Processing document 123/331 - 37.16% complete
+2024-09-02 15:12:13,612 - InvertedIndex - INFO - Processing document 124/331 - 37.46% complete
+2024-09-02 15:12:13,618 - InvertedIndex - INFO - Processing document 125/331 - 37.76% complete
+2024-09-02 15:12:13,626 - InvertedIndex - INFO - Processing document 126/331 - 38.07% complete
+2024-09-02 15:12:13,633 - InvertedIndex - INFO - Processing document 127/331 - 38.37% complete
+2024-09-02 15:12:13,637 - InvertedIndex - INFO - Processing document 128/331 - 38.67% complete
+2024-09-02 15:12:13,643 - InvertedIndex - INFO - Overall progress: 38.67%
+2024-09-02 15:12:13,643 - InvertedIndex - INFO - Processing document 129/331 - 38.97% complete
+2024-09-02 15:12:13,651 - InvertedIndex - INFO - Processing document 130/331 - 39.27% complete
+2024-09-02 15:12:13,661 - InvertedIndex - INFO - Processing document 131/331 - 39.58% complete
+2024-09-02 15:12:13,667 - InvertedIndex - INFO - Processing document 132/331 - 39.88% complete
+2024-09-02 15:12:13,674 - InvertedIndex - INFO - Processing document 133/331 - 40.18% complete
+2024-09-02 15:12:13,682 - InvertedIndex - INFO - Processing document 134/331 - 40.48% complete
+2024-09-02 15:12:13,692 - InvertedIndex - INFO - Processing document 135/331 - 40.79% complete
+2024-09-02 15:12:13,698 - InvertedIndex - INFO - Processing document 136/331 - 41.09% complete
+2024-09-02 15:12:13,707 - InvertedIndex - INFO - Processing document 137/331 - 41.39% complete
+2024-09-02 15:12:13,716 - InvertedIndex - INFO - Processing document 138/331 - 41.69% complete
+2024-09-02 15:12:13,724 - InvertedIndex - INFO - Processing document 139/331 - 41.99% complete
+2024-09-02 15:12:13,736 - InvertedIndex - INFO - Processing document 140/331 - 42.30% complete
+2024-09-02 15:12:13,745 - InvertedIndex - INFO - Processing document 141/331 - 42.60% complete
+2024-09-02 15:12:13,757 - InvertedIndex - INFO - Processing document 142/331 - 42.90% complete
+2024-09-02 15:12:13,765 - InvertedIndex - INFO - Processing document 143/331 - 43.20% complete
+2024-09-02 15:12:13,777 - InvertedIndex - INFO - Processing document 144/331 - 43.50% complete
+2024-09-02 15:12:13,783 - InvertedIndex - INFO - Overall progress: 43.50%
+2024-09-02 15:12:13,784 - InvertedIndex - INFO - Processing document 145/331 - 43.81% complete
+2024-09-02 15:12:13,789 - InvertedIndex - INFO - Processing document 146/331 - 44.11% complete
+2024-09-02 15:12:13,796 - InvertedIndex - INFO - Processing document 147/331 - 44.41% complete
+2024-09-02 15:12:13,804 - InvertedIndex - INFO - Processing document 148/331 - 44.71% complete
+2024-09-02 15:12:13,813 - InvertedIndex - INFO - Processing document 149/331 - 45.02% complete
+2024-09-02 15:12:13,819 - InvertedIndex - INFO - Processing document 150/331 - 45.32% complete
+2024-09-02 15:12:13,829 - InvertedIndex - INFO - Processing document 151/331 - 45.62% complete
+2024-09-02 15:12:13,834 - InvertedIndex - INFO - Processing document 152/331 - 45.92% complete
+2024-09-02 15:12:13,843 - InvertedIndex - INFO - Processing document 153/331 - 46.22% complete
+2024-09-02 15:12:13,850 - InvertedIndex - INFO - Processing document 154/331 - 46.53% complete
+2024-09-02 15:12:13,855 - InvertedIndex - INFO - Processing document 155/331 - 46.83% complete
+2024-09-02 15:12:13,860 - InvertedIndex - INFO - Processing document 156/331 - 47.13% complete
+2024-09-02 15:12:13,867 - InvertedIndex - INFO - Processing document 157/331 - 47.43% complete
+2024-09-02 15:12:13,877 - InvertedIndex - INFO - Processing document 158/331 - 47.73% complete
+2024-09-02 15:12:13,886 - InvertedIndex - INFO - Processing document 159/331 - 48.04% complete
+2024-09-02 15:12:13,892 - InvertedIndex - INFO - Processing document 160/331 - 48.34% complete
+2024-09-02 15:12:13,897 - InvertedIndex - INFO - Overall progress: 48.34%
+2024-09-02 15:12:13,898 - InvertedIndex - INFO - Processing document 161/331 - 48.64% complete
+2024-09-02 15:12:13,904 - InvertedIndex - INFO - Processing document 162/331 - 48.94% complete
+2024-09-02 15:12:13,913 - InvertedIndex - INFO - Processing document 163/331 - 49.24% complete
+2024-09-02 15:12:13,920 - InvertedIndex - INFO - Processing document 164/331 - 49.55% complete
+2024-09-02 15:12:13,929 - InvertedIndex - INFO - Processing document 165/331 - 49.85% complete
+2024-09-02 15:12:13,937 - InvertedIndex - INFO - Processing document 166/331 - 50.15% complete
+2024-09-02 15:12:13,943 - InvertedIndex - INFO - Processing document 167/331 - 50.45% complete
+2024-09-02 15:12:13,952 - InvertedIndex - INFO - Processing document 168/331 - 50.76% complete
+2024-09-02 15:12:13,961 - InvertedIndex - INFO - Processing document 169/331 - 51.06% complete
+2024-09-02 15:12:13,969 - InvertedIndex - INFO - Processing document 170/331 - 51.36% complete
+2024-09-02 15:12:13,975 - InvertedIndex - INFO - Processing document 171/331 - 51.66% complete
+2024-09-02 15:12:13,983 - InvertedIndex - INFO - Processing document 172/331 - 51.96% complete
+2024-09-02 15:12:13,990 - InvertedIndex - INFO - Processing document 173/331 - 52.27% complete
+2024-09-02 15:12:13,997 - InvertedIndex - INFO - Processing document 174/331 - 52.57% complete
+2024-09-02 15:12:14,003 - InvertedIndex - INFO - Processing document 175/331 - 52.87% complete
+2024-09-02 15:12:14,012 - InvertedIndex - INFO - Processing document 176/331 - 53.17% complete
+2024-09-02 15:12:14,020 - InvertedIndex - INFO - Overall progress: 53.17%
+2024-09-02 15:12:14,020 - InvertedIndex - INFO - Processing document 177/331 - 53.47% complete
+2024-09-02 15:12:14,031 - InvertedIndex - INFO - Processing document 178/331 - 53.78% complete
+2024-09-02 15:12:14,038 - InvertedIndex - INFO - Processing document 179/331 - 54.08% complete
+2024-09-02 15:12:14,049 - InvertedIndex - INFO - Processing document 180/331 - 54.38% complete
+2024-09-02 15:12:14,058 - InvertedIndex - INFO - Processing document 181/331 - 54.68% complete
+2024-09-02 15:12:14,065 - InvertedIndex - INFO - Processing document 182/331 - 54.98% complete
+2024-09-02 15:12:14,073 - InvertedIndex - INFO - Processing document 183/331 - 55.29% complete
+2024-09-02 15:12:14,082 - InvertedIndex - INFO - Processing document 184/331 - 55.59% complete
+2024-09-02 15:12:14,092 - InvertedIndex - INFO - Processing document 185/331 - 55.89% complete
+2024-09-02 15:12:14,100 - InvertedIndex - INFO - Processing document 186/331 - 56.19% complete
+2024-09-02 15:12:14,107 - InvertedIndex - INFO - Processing document 187/331 - 56.50% complete
+2024-09-02 15:12:14,112 - InvertedIndex - INFO - Processing document 188/331 - 56.80% complete
+2024-09-02 15:12:14,121 - InvertedIndex - INFO - Processing document 189/331 - 57.10% complete
+2024-09-02 15:12:14,131 - InvertedIndex - INFO - Processing document 190/331 - 57.40% complete
+2024-09-02 15:12:14,143 - InvertedIndex - INFO - Processing document 191/331 - 57.70% complete
+2024-09-02 15:12:14,152 - InvertedIndex - INFO - Processing document 192/331 - 58.01% complete
+2024-09-02 15:12:14,159 - InvertedIndex - INFO - Overall progress: 58.01%
+2024-09-02 15:12:14,160 - InvertedIndex - INFO - Processing document 193/331 - 58.31% complete
+2024-09-02 15:12:14,170 - InvertedIndex - INFO - Processing document 194/331 - 58.61% complete
+2024-09-02 15:12:14,179 - InvertedIndex - INFO - Processing document 195/331 - 58.91% complete
+2024-09-02 15:12:14,188 - InvertedIndex - INFO - Processing document 196/331 - 59.21% complete
+2024-09-02 15:12:14,196 - InvertedIndex - INFO - Processing document 197/331 - 59.52% complete
+2024-09-02 15:12:14,203 - InvertedIndex - INFO - Processing document 198/331 - 59.82% complete
+2024-09-02 15:12:14,209 - InvertedIndex - INFO - Processing document 199/331 - 60.12% complete
+2024-09-02 15:12:14,221 - InvertedIndex - INFO - Processing document 200/331 - 60.42% complete
+2024-09-02 15:12:14,228 - InvertedIndex - INFO - Processing document 201/331 - 60.73% complete
+2024-09-02 15:12:14,237 - InvertedIndex - INFO - Processing document 202/331 - 61.03% complete
+2024-09-02 15:12:14,244 - InvertedIndex - INFO - Processing document 203/331 - 61.33% complete
+2024-09-02 15:12:14,254 - InvertedIndex - INFO - Processing document 204/331 - 61.63% complete
+2024-09-02 15:12:14,259 - InvertedIndex - INFO - Processing document 205/331 - 61.93% complete
+2024-09-02 15:12:14,267 - InvertedIndex - INFO - Processing document 206/331 - 62.24% complete
+2024-09-02 15:12:14,275 - InvertedIndex - INFO - Processing document 207/331 - 62.54% complete
+2024-09-02 15:12:14,282 - InvertedIndex - INFO - Processing document 208/331 - 62.84% complete
+2024-09-02 15:12:14,291 - InvertedIndex - INFO - Overall progress: 62.84%
+2024-09-02 15:12:14,292 - InvertedIndex - INFO - Processing document 209/331 - 63.14% complete
+2024-09-02 15:12:14,299 - InvertedIndex - INFO - Processing document 210/331 - 63.44% complete
+2024-09-02 15:12:14,307 - InvertedIndex - INFO - Processing document 211/331 - 63.75% complete
+2024-09-02 15:12:14,315 - InvertedIndex - INFO - Processing document 212/331 - 64.05% complete
+2024-09-02 15:12:14,322 - InvertedIndex - INFO - Processing document 213/331 - 64.35% complete
+2024-09-02 15:12:14,327 - InvertedIndex - INFO - Processing document 214/331 - 64.65% complete
+2024-09-02 15:12:14,333 - InvertedIndex - INFO - Processing document 215/331 - 64.95% complete
+2024-09-02 15:12:14,342 - InvertedIndex - INFO - Processing document 216/331 - 65.26% complete
+2024-09-02 15:12:14,349 - InvertedIndex - INFO - Processing document 217/331 - 65.56% complete
+2024-09-02 15:12:14,354 - InvertedIndex - INFO - Processing document 218/331 - 65.86% complete
+2024-09-02 15:12:14,360 - InvertedIndex - INFO - Processing document 219/331 - 66.16% complete
+2024-09-02 15:12:14,368 - InvertedIndex - INFO - Processing document 220/331 - 66.47% complete
+2024-09-02 15:12:14,375 - InvertedIndex - INFO - Processing document 221/331 - 66.77% complete
+2024-09-02 15:12:14,384 - InvertedIndex - INFO - Processing document 222/331 - 67.07% complete
+2024-09-02 15:12:14,394 - InvertedIndex - INFO - Processing document 223/331 - 67.37% complete
+2024-09-02 15:12:14,399 - InvertedIndex - INFO - Processing document 224/331 - 67.67% complete
+2024-09-02 15:12:14,403 - InvertedIndex - INFO - Overall progress: 67.67%
+2024-09-02 15:12:14,405 - InvertedIndex - INFO - Processing document 225/331 - 67.98% complete
+2024-09-02 15:12:14,407 - InvertedIndex - INFO - Processing document 226/331 - 68.28% complete
+2024-09-02 15:12:14,413 - InvertedIndex - INFO - Processing document 227/331 - 68.58% complete
+2024-09-02 15:12:14,424 - InvertedIndex - INFO - Processing document 228/331 - 68.88% complete
+2024-09-02 15:12:14,428 - InvertedIndex - INFO - Processing document 229/331 - 69.18% complete
+2024-09-02 15:12:14,436 - InvertedIndex - INFO - Processing document 230/331 - 69.49% complete
+2024-09-02 15:12:14,440 - InvertedIndex - INFO - Processing document 231/331 - 69.79% complete
+2024-09-02 15:12:14,448 - InvertedIndex - INFO - Processing document 232/331 - 70.09% complete
+2024-09-02 15:12:14,453 - InvertedIndex - INFO - Processing document 233/331 - 70.39% complete
+2024-09-02 15:12:14,459 - InvertedIndex - INFO - Processing document 234/331 - 70.69% complete
+2024-09-02 15:12:14,469 - InvertedIndex - INFO - Processing document 235/331 - 71.00% complete
+2024-09-02 15:12:14,478 - InvertedIndex - INFO - Processing document 236/331 - 71.30% complete
+2024-09-02 15:12:14,483 - InvertedIndex - INFO - Processing document 237/331 - 71.60% complete
+2024-09-02 15:12:14,488 - InvertedIndex - INFO - Processing document 238/331 - 71.90% complete
+2024-09-02 15:12:14,494 - InvertedIndex - INFO - Processing document 239/331 - 72.21% complete
+2024-09-02 15:12:14,499 - InvertedIndex - INFO - Processing document 240/331 - 72.51% complete
+2024-09-02 15:12:14,505 - InvertedIndex - INFO - Overall progress: 72.51%
+2024-09-02 15:12:14,505 - InvertedIndex - INFO - Processing document 241/331 - 72.81% complete
+2024-09-02 15:12:14,515 - InvertedIndex - INFO - Processing document 242/331 - 73.11% complete
+2024-09-02 15:12:14,523 - InvertedIndex - INFO - Processing document 243/331 - 73.41% complete
+2024-09-02 15:12:14,530 - InvertedIndex - INFO - Processing document 244/331 - 73.72% complete
+2024-09-02 15:12:14,541 - InvertedIndex - INFO - Processing document 245/331 - 74.02% complete
+2024-09-02 15:12:14,546 - InvertedIndex - INFO - Processing document 246/331 - 74.32% complete
+2024-09-02 15:12:14,552 - InvertedIndex - INFO - Processing document 247/331 - 74.62% complete
+2024-09-02 15:12:14,558 - InvertedIndex - INFO - Processing document 248/331 - 74.92% complete
+2024-09-02 15:12:14,566 - InvertedIndex - INFO - Processing document 249/331 - 75.23% complete
+2024-09-02 15:12:14,575 - InvertedIndex - INFO - Processing document 250/331 - 75.53% complete
+2024-09-02 15:12:14,583 - InvertedIndex - INFO - Processing document 251/331 - 75.83% complete
+2024-09-02 15:12:14,594 - InvertedIndex - INFO - Processing document 252/331 - 76.13% complete
+2024-09-02 15:12:14,602 - InvertedIndex - INFO - Processing document 253/331 - 76.44% complete
+2024-09-02 15:12:14,609 - InvertedIndex - INFO - Processing document 254/331 - 76.74% complete
+2024-09-02 15:12:14,616 - InvertedIndex - INFO - Processing document 255/331 - 77.04% complete
+2024-09-02 15:12:14,623 - InvertedIndex - INFO - Processing document 256/331 - 77.34% complete
+2024-09-02 15:12:14,634 - InvertedIndex - INFO - Overall progress: 77.34%
+2024-09-02 15:12:14,634 - InvertedIndex - INFO - Processing document 257/331 - 77.64% complete
+2024-09-02 15:12:14,642 - InvertedIndex - INFO - Processing document 258/331 - 77.95% complete
+2024-09-02 15:12:14,651 - InvertedIndex - INFO - Processing document 259/331 - 78.25% complete
+2024-09-02 15:12:14,657 - InvertedIndex - INFO - Processing document 260/331 - 78.55% complete
+2024-09-02 15:12:14,665 - InvertedIndex - INFO - Processing document 261/331 - 78.85% complete
+2024-09-02 15:12:14,671 - InvertedIndex - INFO - Processing document 262/331 - 79.15% complete
+2024-09-02 15:12:14,680 - InvertedIndex - INFO - Processing document 263/331 - 79.46% complete
+2024-09-02 15:12:14,691 - InvertedIndex - INFO - Processing document 264/331 - 79.76% complete
+2024-09-02 15:12:14,696 - InvertedIndex - INFO - Processing document 265/331 - 80.06% complete
+2024-09-02 15:12:14,703 - InvertedIndex - INFO - Processing document 266/331 - 80.36% complete
+2024-09-02 15:12:14,710 - InvertedIndex - INFO - Processing document 267/331 - 80.66% complete
+2024-09-02 15:12:14,716 - InvertedIndex - INFO - Processing document 268/331 - 80.97% complete
+2024-09-02 15:12:14,723 - InvertedIndex - INFO - Processing document 269/331 - 81.27% complete
+2024-09-02 15:12:14,731 - InvertedIndex - INFO - Processing document 270/331 - 81.57% complete
+2024-09-02 15:12:14,736 - InvertedIndex - INFO - Processing document 271/331 - 81.87% complete
+2024-09-02 15:12:14,747 - InvertedIndex - INFO - Processing document 272/331 - 82.18% complete
+2024-09-02 15:12:14,756 - InvertedIndex - INFO - Overall progress: 82.18%
+2024-09-02 15:12:14,757 - InvertedIndex - INFO - Processing document 273/331 - 82.48% complete
+2024-09-02 15:12:14,762 - InvertedIndex - INFO - Processing document 274/331 - 82.78% complete
+2024-09-02 15:12:14,767 - InvertedIndex - INFO - Processing document 275/331 - 83.08% complete
+2024-09-02 15:12:14,773 - InvertedIndex - INFO - Processing document 276/331 - 83.38% complete
+2024-09-02 15:12:14,779 - InvertedIndex - INFO - Processing document 277/331 - 83.69% complete
+2024-09-02 15:12:14,785 - InvertedIndex - INFO - Processing document 278/331 - 83.99% complete
+2024-09-02 15:12:14,792 - InvertedIndex - INFO - Processing document 279/331 - 84.29% complete
+2024-09-02 15:12:14,800 - InvertedIndex - INFO - Processing document 280/331 - 84.59% complete
+2024-09-02 15:12:14,810 - InvertedIndex - INFO - Processing document 281/331 - 84.89% complete
+2024-09-02 15:12:14,818 - InvertedIndex - INFO - Processing document 282/331 - 85.20% complete
+2024-09-02 15:12:14,824 - InvertedIndex - INFO - Processing document 283/331 - 85.50% complete
+2024-09-02 15:12:14,834 - InvertedIndex - INFO - Processing document 284/331 - 85.80% complete
+2024-09-02 15:12:14,841 - InvertedIndex - INFO - Processing document 285/331 - 86.10% complete
+2024-09-02 15:12:14,849 - InvertedIndex - INFO - Processing document 286/331 - 86.40% complete
+2024-09-02 15:12:14,857 - InvertedIndex - INFO - Processing document 287/331 - 86.71% complete
+2024-09-02 15:12:14,863 - InvertedIndex - INFO - Processing document 288/331 - 87.01% complete
+2024-09-02 15:12:14,868 - InvertedIndex - INFO - Overall progress: 87.01%
+2024-09-02 15:12:14,869 - InvertedIndex - INFO - Processing document 289/331 - 87.31% complete
+2024-09-02 15:12:14,876 - InvertedIndex - INFO - Processing document 290/331 - 87.61% complete
+2024-09-02 15:12:14,883 - InvertedIndex - INFO - Processing document 291/331 - 87.92% complete
+2024-09-02 15:12:14,890 - InvertedIndex - INFO - Processing document 292/331 - 88.22% complete
+2024-09-02 15:12:14,900 - InvertedIndex - INFO - Processing document 293/331 - 88.52% complete
+2024-09-02 15:12:14,911 - InvertedIndex - INFO - Processing document 294/331 - 88.82% complete
+2024-09-02 15:12:14,925 - InvertedIndex - INFO - Processing document 295/331 - 89.12% complete
+2024-09-02 15:12:14,931 - InvertedIndex - INFO - Processing document 296/331 - 89.43% complete
+2024-09-02 15:12:14,937 - InvertedIndex - INFO - Processing document 297/331 - 89.73% complete
+2024-09-02 15:12:14,943 - InvertedIndex - INFO - Processing document 298/331 - 90.03% complete
+2024-09-02 15:12:14,952 - InvertedIndex - INFO - Processing document 299/331 - 90.33% complete
+2024-09-02 15:12:14,957 - InvertedIndex - INFO - Processing document 300/331 - 90.63% complete
+2024-09-02 15:12:14,965 - InvertedIndex - INFO - Processing document 301/331 - 90.94% complete
+2024-09-02 15:12:14,974 - InvertedIndex - INFO - Processing document 302/331 - 91.24% complete
+2024-09-02 15:12:14,987 - InvertedIndex - INFO - Processing document 303/331 - 91.54% complete
+2024-09-02 15:12:15,001 - InvertedIndex - INFO - Processing document 304/331 - 91.84% complete
+2024-09-02 15:12:15,013 - InvertedIndex - INFO - Overall progress: 91.84%
+2024-09-02 15:12:15,015 - InvertedIndex - INFO - Processing document 305/331 - 92.15% complete
+2024-09-02 15:12:15,025 - InvertedIndex - INFO - Processing document 306/331 - 92.45% complete
+2024-09-02 15:12:15,031 - InvertedIndex - INFO - Processing document 307/331 - 92.75% complete
+2024-09-02 15:12:15,038 - InvertedIndex - INFO - Processing document 308/331 - 93.05% complete
+2024-09-02 15:12:15,046 - InvertedIndex - INFO - Processing document 309/331 - 93.35% complete
+2024-09-02 15:12:15,053 - InvertedIndex - INFO - Processing document 310/331 - 93.66% complete
+2024-09-02 15:12:15,058 - InvertedIndex - INFO - Processing document 311/331 - 93.96% complete
+2024-09-02 15:12:15,066 - InvertedIndex - INFO - Processing document 312/331 - 94.26% complete
+2024-09-02 15:12:15,075 - InvertedIndex - INFO - Processing document 313/331 - 94.56% complete
+2024-09-02 15:12:15,082 - InvertedIndex - INFO - Processing document 314/331 - 94.86% complete
+2024-09-02 15:12:15,091 - InvertedIndex - INFO - Processing document 315/331 - 95.17% complete
+2024-09-02 15:12:15,097 - InvertedIndex - INFO - Processing document 316/331 - 95.47% complete
+2024-09-02 15:12:15,108 - InvertedIndex - INFO - Processing document 317/331 - 95.77% complete
+2024-09-02 15:12:15,115 - InvertedIndex - INFO - Processing document 318/331 - 96.07% complete
+2024-09-02 15:12:15,123 - InvertedIndex - INFO - Processing document 319/331 - 96.37% complete
+2024-09-02 15:12:15,131 - InvertedIndex - INFO - Processing document 320/331 - 96.68% complete
+2024-09-02 15:12:15,138 - InvertedIndex - INFO - Overall progress: 96.68%
+2024-09-02 15:12:15,139 - InvertedIndex - INFO - Processing document 321/331 - 96.98% complete
+2024-09-02 15:12:15,146 - InvertedIndex - INFO - Processing document 322/331 - 97.28% complete
+2024-09-02 15:12:15,153 - InvertedIndex - INFO - Processing document 323/331 - 97.58% complete
+2024-09-02 15:12:15,163 - InvertedIndex - INFO - Processing document 324/331 - 97.89% complete
+2024-09-02 15:12:15,173 - InvertedIndex - INFO - Processing document 325/331 - 98.19% complete
+2024-09-02 15:12:15,183 - InvertedIndex - INFO - Processing document 326/331 - 98.49% complete
+2024-09-02 15:12:15,186 - InvertedIndex - INFO - Processing document 327/331 - 98.79% complete
+2024-09-02 15:12:15,193 - InvertedIndex - INFO - Processing document 328/331 - 99.09% complete
+2024-09-02 15:12:15,201 - InvertedIndex - INFO - Processing document 329/331 - 99.40% complete
+2024-09-02 15:12:15,206 - InvertedIndex - INFO - Processing document 330/331 - 99.70% complete
+2024-09-02 15:12:15,215 - InvertedIndex - INFO - Processing document 331/331 - 100.00% complete
+2024-09-02 15:12:15,220 - InvertedIndex - INFO - Finished text preprocessing. Time taken: 3.67 seconds
+2024-09-02 15:12:15,366 - InvertedIndex - INFO - Finished vectorization and processing. Time taken: 3.81 seconds
+2024-09-02 15:12:15,368 - InvertedIndex - INFO - Step 4: Creating inverted index
+2024-09-02 15:12:15,369 - InvertedIndex - INFO - Creating inverted index
+2024-09-02 15:12:54,222 - InvertedIndex - INFO - Finished creating inverted index. Time taken: 38.85 seconds
+2024-09-02 15:12:54,222 - InvertedIndex - INFO - Step 5: Saving inverted index
+2024-09-02 15:12:54,223 - InvertedIndex - INFO - Saving inverted index to inverted_index.json
+2024-09-02 15:12:54,358 - InvertedIndex - INFO - Inverted index successfully saved to inverted_index.json
+2024-09-02 15:12:54,359 - InvertedIndex - INFO - Completed inverted index pipeline. Total time taken: 45.30 seconds
+2024-09-02 16:38:54,153 - InvertedIndex - INFO - Starting text processing pipeline
+2024-09-02 16:38:54,153 - InvertedIndex - INFO - Starting text processing pipeline
+2024-09-02 16:38:54,156 - InvertedIndex - INFO - Step 1: Reading files
+2024-09-02 16:38:54,156 - InvertedIndex - INFO - Step 1: Reading files
+2024-09-02 16:42:28,492 - InvertedIndex - INFO - Starting complete inverted index pipeline
+2024-09-02 16:42:28,494 - InvertedIndex - INFO - Step 1: Processing texts
+2024-09-02 16:42:31,892 - InvertedIndex - INFO - Step 2: Applying vectorizer and processing
+2024-09-02 16:42:31,892 - InvertedIndex - INFO - Applying vectorizer and processing
+2024-09-02 16:42:32,012 - InvertedIndex - INFO - Finished vectorization and processing. Time taken: 0.12 seconds
+2024-09-02 16:42:32,014 - InvertedIndex - INFO - Step 3: Creating inverted index
+2024-09-02 16:42:32,014 - InvertedIndex - INFO - Creating inverted index
+2024-09-02 16:43:10,506 - InvertedIndex - INFO - Finished creating inverted index. Time taken: 38.49 seconds
+2024-09-02 16:43:10,506 - InvertedIndex - INFO - Step 4: Saving inverted index
+2024-09-02 16:43:10,507 - InvertedIndex - INFO - Saving inverted index to inverted_index.json
+2024-09-02 16:43:10,640 - InvertedIndex - INFO - Inverted index successfully saved to inverted_index.json
+2024-09-02 16:43:10,641 - InvertedIndex - INFO - Completed inverted index pipeline. Total time taken: 42.15 seconds
