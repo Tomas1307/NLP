@@ -2,7 +2,6 @@ class BinarySearch:
     def __init__(self) -> None:
         pass
 
-
     def intersect_two_lists(self, p1, p2):
         """
         Perform the merge operation (intersection) between two posting lists.
@@ -51,3 +50,31 @@ class BinarySearch:
             result = self.intersect_two_lists(result, lists[i])
         
         return result
+    
+    def generate_results_file(self, queries_df, inverted_index, output_file):
+        """
+        Genera un archivo de resultados con el formato especificado.
+        
+        Args:
+            queries_df (DataFrame): DataFrame con las consultas.
+            inverted_index (dict): Índice invertido.
+            output_file (str): Nombre del archivo de salida.
+        """
+        with open(output_file, 'w') as f:
+            for i, row in queries_df.iterrows():
+                query_id = f"q{i+1:02d}"  # Asumiendo que los query_id empiezan en q01
+                query_terms = row['query_list']
+                
+                index_values = [inverted_index[term] for term in query_terms if term in inverted_index]
+                
+                if index_values:
+                    sorted_lists = [sorted(sublist) for sublist in index_values]
+                    result = self.intersect_multiple_lists(sorted_lists)
+                else:
+                    result = []
+                
+                if result:
+                    doc_list = ','.join([f"d{int(doc):03d}" for doc in result])
+                    f.write(f"{query_id} {doc_list}\n")
+                else:
+                    f.write(f"{query_id}\n")
