@@ -210,21 +210,23 @@ class InvertedIndex:
 
         return dataframe_to_return
 
-    def inverted_index(self, dataFrame: pd.DataFrame) -> dict:
+    def inverted_index(self, dataFrame: pd.DataFrame, occurrences: bool = False) -> dict:
         """
         Create an inverted index from the processed DataFrame.
 
         Args:
             dataFrame (pd.DataFrame): Input DataFrame containing vectorized text and document identifiers.
+            occurrences (bool): If True, include the total number of occurrences of each term in the key.
 
         Returns:
-            dict: An inverted index dictionary where keys are terms and values are lists of document identifiers.
+            dict: An inverted index dictionary where keys are terms (or terms with their total occurrences)
+                and values are lists of document identifiers.
 
         Example:
             inverted_index = InvertedIndex()
             df = inverted_index.read_files()
             vectorized_df = inverted_index.apply_vectorizer_and_process(df)
-            inv_index = inverted_index.inverted_index(vectorized_df)
+            inv_index = inverted_index.inverted_index(vectorized_df, occurrences=True)
         """
         self.logger.info("Creating inverted index")
         start_time = time.time()
@@ -232,8 +234,17 @@ class InvertedIndex:
         inverted_index_dicc = {}
         for i in dataFrame.columns.tolist():
             if i != "identifier_files":
+                # Calcula la lista de documentos donde aparece el término
                 list_variable = [dataFrame["identifier_files"].iloc[j] for j in range(len(dataFrame[i])) if dataFrame[i].iloc[j] > 0]
-                inverted_index_dicc[i] = sorted(list_variable)
+                
+                if occurrences:
+                    # Calcula el número total de ocurrencias del término en todos los documentos
+                    total_occurrences = sum(dataFrame[i])
+                    clave = f"({i},{total_occurrences})"
+                else:
+                    clave = i
+
+                inverted_index_dicc[clave] = sorted(list_variable)
 
         end_time = time.time()
         self.logger.info(f"Finished creating inverted index. Time taken: {end_time - start_time:.2f} seconds")
@@ -259,7 +270,8 @@ class InvertedIndex:
         except Exception as e:
             self.logger.error(f"Error saving inverted index to {filename}: {e}")
 
-    def inverted_index_complete_pipeline(self) -> dict:
+
+    def inverted_index_complete_pipeline(self,occurrences: bool = False) -> dict:
         """
         Execute the complete pipeline to create an inverted index.
 
@@ -283,7 +295,7 @@ class InvertedIndex:
         dataFrame = self.apply_vectorizer_and_process(dataFrame)
 
         self.logger.info("Step 4: Creating inverted index")
-        inverted_index_to_return = self.inverted_index(dataFrame)
+        inverted_index_to_return = self.inverted_index(dataFrame,occurrences)
 
         self.logger.info("Step 5: Saving inverted index")
         self.save_inverted_index(inverted_index_to_return)
@@ -292,3 +304,4 @@ class InvertedIndex:
         self.logger.info(f"Completed inverted index pipeline. Total time taken: {overall_end_time - overall_start_time:.2f} seconds")
         
         return inverted_index_to_return
+
