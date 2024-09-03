@@ -96,7 +96,7 @@ class RRDVGensim:
 
         return corpus_tfidf
 
-    def cosine_similarity(self, doc1, doc2):
+    def cosine_similarity(self, doc1: list, doc2: list):
         """
         Calculate the cosine similarity between two document vectors.
 
