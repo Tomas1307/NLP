@@ -248,3 +248,7 @@ class RRDVGensim:
         total_time = end_time - start_time
         self.logger.info(f"100% complete - Results saved in {output_filename}")
         self.logger.info(f"Total processing time: {total_time:.2f} seconds")
+
+
+gen = RRDVGensim()
+gen.process_and_save_results()

@@ -276,3 +276,10 @@
 2024-09-04 15:36:18,614 - InvertedIndex - INFO - Saving inverted index to inverted_index_without_ocurrences.json
 2024-09-04 15:36:18,689 - InvertedIndex - INFO - Inverted index successfully saved to inverted_index_without_ocurrences.json
 2024-09-04 15:36:18,690 - InvertedIndex - INFO - Completed inverted index pipeline. Total time taken: 23.80 seconds
+2024-09-03 15:52:34,904 - InvertedIndex - INFO - Starting complete inverted index pipeline
+2024-09-03 15:52:34,906 - InvertedIndex - INFO - Step 1: Processing texts
+2024-09-03 15:52:40,217 - InvertedIndex - INFO - Step 2: Applying vectorizer and processing
+2024-09-03 15:52:40,217 - InvertedIndex - INFO - Applying vectorizer and processing
+2024-09-03 15:52:40,331 - InvertedIndex - INFO - Finished vectorization and processing. Time taken: 0.11 seconds
+2024-09-03 15:52:40,332 - InvertedIndex - INFO - Step 3: Creating inverted index
+2024-09-03 15:52:40,332 - InvertedIndex - INFO - Creating inverted index
