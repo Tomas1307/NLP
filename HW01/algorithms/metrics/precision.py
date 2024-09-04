@@ -1,7 +1,13 @@
 import numpy as np
 
 
-def precision(relevance_query: list): 
+def precision(relevance_query: list):
+      """
+      Función que calcula la métrica de precisión para un vector
+
+      Args
+      relevance_query: Documentos con relevancia binaria
+      """
       list_of_documents = np.array(relevance_query)
       #Sacar numero de documentos irrelevantes
       number_of_zeros = np.sum(list_of_documents == 0)
@@ -13,22 +19,28 @@ def precision(relevance_query: list):
       return precision_calculated
     
 def precision_at_k(relevance_query: list ,k: int):
+      """
+      Función que calcula la métrica de precisión para un vector dentro de una pila k
+
+      Args
+      relevance_query: Documentos con relevancia binaria
+      """
     #Resolver error en el cual k puede ser mayor que el tamaño de la lista
-    list_of_documents = np.array(relevance_query)
-    k = min(k,len(list_of_documents))
+      list_of_documents = np.array(relevance_query)
+      k = min(k,len(list_of_documents))
 
-    #Solo revisa los k documentos
-    k_documents = list_of_documents[:k]
+      #Solo revisa los k documentos
+      k_documents = list_of_documents[:k]
 
-    #Numero de documentos irrelevantes
-    number_of_zeros = np.sum(k_documents == 0)
+      #Numero de documentos irrelevantes
+      number_of_zeros = np.sum(k_documents == 0)
 
-    #Numero de documentos relevantes
-    number_of_ones = np.sum(k_documents == 1)
+      #Numero de documentos relevantes
+      number_of_ones = np.sum(k_documents == 1)
 
-    #Proporcion de documentos que son relevantes (siguiendo misma logica de la precision normal)
-    precision_calculated =  number_of_ones/(number_of_zeros+number_of_ones)
+      #Proporcion de documentos que son relevantes (siguiendo misma logica de la precision normal)
+      precision_calculated =  number_of_ones/(number_of_zeros+number_of_ones)
 
-    return precision_calculated
+      return precision_calculated
 
 

@@ -2,6 +2,12 @@ import numpy as np
 from .precision import precision_at_k
 
 def average_precision(relevance_query: list):
+    """
+      Función que calcula la métrica de average_precision para una query con relevancia binaria
+
+      Args
+      relevance_query: Documentos con relevancia binaria
+      """
     relevance_query = np.array(relevance_query)
     nb_relevant = np.sum(relevance_query == 1)
     nb_relevant_found = 0
