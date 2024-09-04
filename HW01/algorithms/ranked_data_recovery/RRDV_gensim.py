@@ -4,6 +4,10 @@ from gensim import corpora
 from gensim.models import TfidfModel
 from gensim.matutils import cossim
 from algorithms.binary_search.inverted_index import InvertedIndex
+from algorithms.binary_search.query_processor import QueryProcessor
+from algorithms.binary_search.text_processor import TextProcessor
+import logging
+import time
 
 class RRDVGensim:
     """
@@ -18,6 +22,21 @@ class RRDVGensim:
         self.inverted_index_occurrences = None
         self.dictionary = None
         self.tfidf_model = None
+        self.logger = self.setup_logger()
+
+    def setup_logger(self):
+        """
+        Set up the logger for the class.
+        """
+        logger = logging.getLogger('RRDVGensim')
+        logger.setLevel(logging.INFO)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        
+        ch = logging.StreamHandler()
+        ch.setFormatter(formatter)
+        logger.addHandler(ch)
+        
+        return logger
 
     def load_inverted_index(self, file_path: str ="inverted_index.json"):
         """
@@ -29,12 +48,16 @@ class RRDVGensim:
         Returns:
         None
         """
+        self.logger.info("Loading inverted index...")
         try:
             with open(file_path) as file:
                 self.inverted_index_occurrences = json.load(file)
-        except FileNotFoundError as e:
-            print(f"File not found: {e}")
+            self.logger.info("Inverted index loaded successfully.")
+        except FileNotFoundError:
+            self.logger.warning(f"File not found: {file_path}")
+            self.logger.info("Creating new inverted index...")
             self.inverted_index_occurrences = self.inverted_index.inverted_index_complete_pipeline(occurrences=True)
+            self.logger.info("New inverted index created successfully.")
             
 
     def process_inverted_index(self):
@@ -96,7 +119,7 @@ class RRDVGensim:
 
         return corpus_tfidf
 
-    def cosine_similarity(self, doc1, doc2):
+    def cosine_similarity(self, doc1: list, doc2: list):
         """
         Calculate the cosine similarity between two document vectors.
 
@@ -122,3 +145,96 @@ class RRDVGensim:
         similarity = cossim(vec1_tfidf, vec2_tfidf)
 
         return similarity
+    
+    
+    def format_cosine_similarities(self, df_queries, df_texts):
+        """
+        Format cosine similarities between queries and texts.
+
+        Parameters:
+        df_queries (pd.DataFrame): DataFrame containing processed queries.
+        df_texts (pd.DataFrame): DataFrame containing processed texts.
+
+        Returns:
+        str: Formatted string of cosine similarities.
+        """
+        self.logger.info("Calculating cosine similarities...")
+        results = {}
+        total_comparisons = len(df_queries) * len(df_texts)
+        comparisons_done = 0
+
+        for i in range(len(df_queries)):
+            query_id = df_queries['identifier'].iloc[i]
+            query_results = []
+
+            for j in range(len(df_texts)):
+                value = self.cosine_similarity(df_queries["query_list"].iloc[i], df_texts["text_list"].iloc[j])
+                if value > 0:
+                    doc_id = f"d{df_texts['identifier'].iloc[j]}"
+                    query_results.append(f"{doc_id}:{value:.6f}")
+                
+                comparisons_done += 1
+                if comparisons_done % 100 == 0:  # Log progress every 100 comparisons
+                    progress = (comparisons_done / total_comparisons) * 100
+                    self.logger.info(f"Progress: {progress:.2f}% ({comparisons_done}/{total_comparisons})")
+
+            results[query_id] = ','.join(query_results)
+
+        formatted_output = []
+        for query_id, result in results.items():
+            formatted_output.append(f"{query_id} {result}")
+
+        self.logger.info("Cosine similarities calculation completed.")
+        return '\n'.join(formatted_output)
+
+    def process_and_save_results(self, output_filename: str = "GENSIM-consultas_resultado.txt"):
+        """
+        Process queries and texts, calculate cosine similarities, and save results to a file.
+
+        Parameters:
+        queries_file (str): Path to the queries file.
+        texts_directory (str): Path to the directory containing text files.
+        output_filename (str): Name of the output file to save results.
+
+        Returns:
+        None
+        """
+        start_time = time.time()
+        self.logger.info("Starting RRDV process...")
+
+        # Load or create inverted index
+        self.load_inverted_index()
+        self.logger.info("25% complete - Inverted index loaded/created")
+
+        # Create TF-IDF matrix
+        self.logger.info("Creating TF-IDF matrix...")
+        self.create_tfidf_matrix(self.inverted_index_occurrences)
+        self.logger.info("50% complete - TF-IDF matrix created")
+
+        # Process queries and texts
+        self.logger.info("Processing queries and texts...")
+        query_processor = QueryProcessor()
+        text_processor = TextProcessor()
+
+        df_queries = query_processor.process_queries()
+        df_texts = text_processor.process_texts()
+        self.logger.info("75% complete - Queries and texts processed")
+
+        # Calculate and format cosine similarities
+        self.logger.info("Calculating cosine similarities...")
+        formatted_result = self.format_cosine_similarities(df_queries, df_texts)
+
+        # Save results to file
+        self.logger.info(f"Saving results to {output_filename}...")
+        with open(output_filename, 'w') as f:
+            f.write(formatted_result)
+
+        end_time = time.time()
+        total_time = end_time - start_time
+        self.logger.info(f"100% complete - Results saved in {output_filename}")
+        self.logger.info(f"Total processing time: {total_time:.2f} seconds")
+
+# Usage example
+if __name__ == "__main__":
+    rrdv = RRDVGensim()
+    rrdv.process_and_save_results()

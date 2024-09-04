@@ -75,7 +75,7 @@ class TextProcessor:
             processed_text = self.processor_.remove_punctuation(processed_text)
             processed_text = self.processor_.remove_non_ascii(processed_text)
             processed_text = self.processor_.remove_stopwords(processed_text)
-            processed_text = self.processor_.lemmatize_verbs(processed_text)
+            processed_text = self.processor_.stem_verbs(processed_text)
             df.at[i, "text"] = ' '.join(processed_text)
 
         df["text_list"] = df["text"].apply(lambda x: x.split())

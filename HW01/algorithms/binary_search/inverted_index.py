@@ -64,7 +64,7 @@ class InvertedIndex:
 
         return inverted_index_dicc
 
-    def save_inverted_index(self, inverted_index: dict, filename: str = "inverted_index.json"):
+    def save_inverted_index(self, inverted_index: dict, filename: str = "inverted_index_without_ocurrences.json"):
         self.logger.info(f"Saving inverted index to {filename}")
         try:
             with open(filename, 'w') as file:
