@@ -1,13 +1,17 @@
+import numpy as np
+from .precision import precision_at_k
+
 def average_precision(relevance_query: list):
-    nb_relevant = relevance_query.count(1)
+    relevance_query = np.array(relevance_query)
+    nb_relevant = np.sum(relevance_query == 1)
     nb_relevant_found = 0
-    sum_precisions = 0
-    k=0
-    while nb_relevant!=nb_relevant_found:
-        if relevance_query[k]==1:
-            nb_relevant_found+=1
-            sum_precisions += precision_at_k(relevance_query, k+1)
-        k+=1
-        
-    print (sum_precisions/nb_relevant)
-    return (sum_precisions/nb_relevant)
+    sum_precisionss = 0
+    k = 0
+
+    while nb_relevant != nb_relevant_found and k < len(relevance_query):
+        if relevance_query[k] == 1:
+            nb_relevant_found += 1
+            sum_precisionss += precision_at_k(relevance_query, k+1)
+        k += 1
+
+    return sum_precisionss / nb_relevant if nb_relevant > 0 else 0

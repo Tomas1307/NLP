@@ -4,11 +4,9 @@ import logging
 import pandas as pd
 import nltk
 from nltk import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
 from KafNafParserPy import KafNafParser
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from typing import List, Dict
+from typing import List
 from algorithms.binary_search.inverted_index import InvertedIndex
 from algorithms.binary_search.binary_search import BinarySearch
 from utils_processor.processor import Processor
@@ -67,9 +65,8 @@ class QueryProcessor:
         tokens = word_tokenize(query)
         tokens = self.processor.to_lowercase(tokens)
         tokens = self.processor.remove_punctuation(tokens)
-        tokens = self.processor.remove_non_ascii(tokens)
         tokens = self.processor.remove_stopwords(tokens)
-        tokens = self.processor.lemmatize_verbs(tokens)
+        tokens = self.processor.stem_verbs(tokens)
         return tokens
 
     def process_queries(self) -> pd.DataFrame:
@@ -86,49 +83,3 @@ class QueryProcessor:
         self.queries_df["query_list"] = self.queries_df["processed_query"].apply(lambda x: ' '.join(x).split())
         logger.info("Processed all queries")
         return self.queries_df
-
-class SearchEngine:
-    """
-    A class for performing binary search on processed queries.
-    """
-
-    def __init__(self, inverted_index_path: str = "inverted_index.json"):
-        """
-        Initialize the SearchEngine.
-
-        Args:
-            inverted_index_path (str): Path to the inverted index JSON file.
-        """
-        with open(inverted_index_path) as file:
-            self.inverted_index = json.load(file)
-        self.binary_search = BinarySearch()
-        logger.info("SearchEngine initialized")
-
-    def generate_results_file(self, queries_df: pd.DataFrame, output_file: str):
-        """
-        Generate a results file based on binary search of processed queries.
-
-        Args:
-            queries_df (pd.DataFrame): DataFrame containing processed queries.
-            output_file (str): Path to the output file.
-        """
-        self.binary_search.generate_results_file(queries_df, self.inverted_index, output_file)
-        logger.info(f"Results file generated: {output_file}")
-
-def main():
-    """
-    Main function to orchestrate the query processing and search operations.
-    """
-    query_processor = QueryProcessor()
-    queries_df = query_processor.process_queries()
-
-    search_engine = SearchEngine()
-    output_file = "BSII-AND-queries_result.txt"
-    search_engine.generate_results_file(queries_df, output_file)
-
-    logger.info(f"Results file content:")
-    with open(output_file, 'r') as f:
-        print(f.read())
-
-if __name__ == "__main__":
-    main()
