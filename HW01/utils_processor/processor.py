@@ -1,6 +1,6 @@
 from nltk import word_tokenize
 from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
+from nltk.stem import PorterStemmer, SnowballStemmer
 import re, unicodedata
 import logging
 
@@ -74,21 +74,21 @@ class Processor:
         except Exception as e:
             print(f"Error on remove_stopwords: {e}")
 
-    def lemmatize_verbs(self, words):
+    def stem_verbs(self, words):
         """
-        Lemmatizes verbs in a list of tokenized words.
+        Stemm verbs in a list of tokenized words.
 
         Args:
             words (list): A list of tokenized words.
 
         Returns:
-            list: A list of lemmatized verbs.
+            list: A list of stemd verbs.
         """
         try:
-            lemmatizer = WordNetLemmatizer()
-            return [lemmatizer.lemmatize(word, pos='v') for word in words]
+            stemr = SnowballStemmer("english")
+            return [stemr.stem(word) for word in words]
         except Exception as e:
-            print(f"Error on lemmatize_verbs: {e}")
+            print(f"Error on stem_verbs: {e}")
 
 
     def preprocessing_pipeline(self, text):
@@ -127,7 +127,7 @@ class Processor:
 
             
             self.logger.info("Step 6/6: Lemmatizing verbs")
-            text = self.lemmatize_verbs(text)
+            text = self.stem_verbs(text)
 
             
             self.logger.info("Preprocessing pipeline completed")

@@ -4,11 +4,9 @@ import logging
 import pandas as pd
 import nltk
 from nltk import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
 from KafNafParserPy import KafNafParser
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
-from typing import List, Dict
+from typing import List
 from algorithms.binary_search.inverted_index import InvertedIndex
 from algorithms.binary_search.binary_search import BinarySearch
 from utils_processor.processor import Processor
@@ -69,7 +67,7 @@ class QueryProcessor:
         tokens = self.processor.remove_punctuation(tokens)
         tokens = self.processor.remove_non_ascii(tokens)
         tokens = self.processor.remove_stopwords(tokens)
-        tokens = self.processor.lemmatize_verbs(tokens)
+        tokens = self.processor.stem_verbs(tokens)
         return tokens
 
     def process_queries(self) -> pd.DataFrame:
