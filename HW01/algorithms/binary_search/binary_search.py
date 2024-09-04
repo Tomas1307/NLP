@@ -51,6 +51,31 @@ class BinarySearch:
         
         return result
     
+    def not_word(self,p,inv_index):
+        """
+        Realiza múltiples intersecciones alrededor de todo el índice
+
+        Args:
+        p: Palabra de la cual se desea obtener los documentos en los cuales no aparece
+        index: Todo el índice invertido
+        """
+        #Obtiene todos los documentos de la palabra de entrada
+        docs_with_word = inv_index.get(p, [])
+
+
+        docs_without_word = []
+
+
+        for i, docs in inv_index.items():
+            if i != p:
+                for doc in docs:
+                    if doc not in docs_with_word:
+                        #Se añade la palabra a la respuesta si todos documentos NO coinciden con los documentos de la palabra de entrada
+                        if doc not in docs_without_word:
+                            docs_without_word.append(doc)
+        
+        return {p: sorted(docs_without_word)}
+    
     def generate_results_file(self, queries_df, inverted_index, output_file):
         """
         Genera un archivo de resultados con el formato especificado.
