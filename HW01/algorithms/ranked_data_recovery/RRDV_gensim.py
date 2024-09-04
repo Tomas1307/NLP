@@ -350,7 +350,7 @@ class RRDVGensim:
         dcg = self.dcg_at_m(retrieved_docs, relevance_scores, M)
         ideal_order = sorted(relevance_scores.values(), reverse=True)
         
-        sum(rel / np.log2(max(i+1, 2)) for i, rel in enumerate(ideal_order[:M]))
+        ideal_dcg = sum(rel / np.log2(max(i+1, 2)) for i, rel in enumerate(ideal_order[:M]))
         return dcg / ideal_dcg if ideal_dcg > 0 else 0
 
     def evaluate_queries(self, relevance_filepath: str = "data/relevance-judgments/relevance-judgments.tsv", gensim_results_filepath: str = "results/GENSIM-consultas_resultado.txt"):
