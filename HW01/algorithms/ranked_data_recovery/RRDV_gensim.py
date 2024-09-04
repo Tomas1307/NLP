@@ -8,6 +8,7 @@ from algorithms.binary_search.query_processor import QueryProcessor
 from algorithms.binary_search.text_processor import TextProcessor
 import logging
 import time
+import numpy as np
 
 class RRDVGensim:
     """
@@ -248,7 +249,138 @@ class RRDVGensim:
         total_time = end_time - start_time
         self.logger.info(f"100% complete - Results saved in {output_filename}")
         self.logger.info(f"Total processing time: {total_time:.2f} seconds")
+        
+        
+    def count_documents(self, value):
+        """
+        Counts the number of documents in a comma-separated string of document identifiers.
 
+        Args:
+            value (str): A string containing document identifiers separated by commas.
 
-gen = RRDVGensim()
-gen.process_and_save_results()
+        Returns:
+            int: The number of documents in the string.
+        """
+        documents = value.split(',')
+        return len(documents)
+
+    def load_relevance_judgments(self, filepath):
+        """
+        Loads relevance judgments from a TSV file and creates a relevance dictionary.
+
+        Args:
+            filepath (str): The path to the relevance judgments TSV file.
+
+        Returns:
+            tuple: A tuple containing:
+                - df (pandas.DataFrame): A DataFrame with the queries and their associated documents.
+                - relevance_dict (dict): A dictionary where each query ID maps to a dictionary of documents and their relevance scores.
+        """
+        df = pd.read_csv(filepath, sep='\t', header=None, names=['query', 'value'])
+        df['M'] = df['value'].apply(self.count_documents)
+        
+        relevance_dict = {}
+        for index, row in df.iterrows():
+            query_id = row['query']
+            relevances = {doc.split(':')[0]: int(doc.split(':')[1]) for doc in row['value'].split(',')}
+            relevance_dict[query_id] = relevances
+            
+        return df, relevance_dict
+
+    def precision_at_m(self, retrieved_docs, relevant_docs, M):
+        """
+        Calculates Precision at M (P@M).
+
+        Args:
+            retrieved_docs (list): A list of retrieved document identifiers.
+            relevant_docs (dict): A dictionary of relevant document identifiers for a query.
+            M (int): The number of top documents to consider for the metric.
+
+        Returns:
+            float: The precision at M.
+        """
+        relevant_retrieved = [doc for doc in retrieved_docs[:M] if doc in relevant_docs]
+        return len(relevant_retrieved) / M
+
+    def recall_at_m(self, retrieved_docs, relevant_docs, M):
+        """
+        Calculates Recall at M (R@M).
+
+        Args:
+            retrieved_docs (list): A list of retrieved document identifiers.
+            relevant_docs (dict): A dictionary of relevant document identifiers for a query.
+            M (int): The number of top documents to consider for the metric.
+
+        Returns:
+            float: The recall at M.
+        """
+        relevant_retrieved = [doc for doc in retrieved_docs[:M] if doc in relevant_docs]
+        return len(relevant_retrieved) / len(relevant_docs)
+
+    def dcg_at_m(self, retrieved_docs, relevance_scores, M):
+        """
+        Calculates Discounted Cumulative Gain at M (DCG@M).
+
+        Args:
+            retrieved_docs (list): A list of retrieved document identifiers.
+            relevance_scores (dict): A dictionary of relevance scores for the retrieved documents.
+            M (int): The number of top documents to consider for the metric.
+
+        Returns:
+            float: The DCG at M.
+        """
+        dcg = 0.0
+        for i in range(M):
+            rel_score = relevance_scores.get(retrieved_docs[i], 0)
+            dcg += (2**rel_score - 1) / np.log2(i + 2)
+        return dcg
+
+    def ndcg_at_m(self, retrieved_docs, relevance_scores, M):
+        """
+        Calculates Normalized Discounted Cumulative Gain at M (NDCG@M).
+
+        Args:
+            retrieved_docs (list): A list of retrieved document identifiers.
+            relevance_scores (dict): A dictionary of relevance scores for the retrieved documents.
+            M (int): The number of top documents to consider for the metric.
+
+        Returns:
+            float: The NDCG at M.
+        """
+        dcg = self.dcg_at_m(retrieved_docs, relevance_scores, M)
+        ideal_order = sorted(relevance_scores.values(), reverse=True)
+        ideal_dcg = sum((2**rel - 1) / np.log2(i + 2) for i, rel in enumerate(ideal_order[:M]))
+        return dcg / ideal_dcg if ideal_dcg > 0 else 0
+
+    def evaluate_queries(self, relevance_filepath: str = "data/relevance-judgments/relevance-judgments.tsv", gensim_results_filepath: str = "results/GENSIM-consultas_resultado.txt"):
+        """
+        Evaluates the performance of a retrieval system using relevance judgments and computes the P@M, R@M, and NDCG@M metrics for each query.
+
+        Args:
+            relevance_filepath (str): The path to the relevance judgments TSV file.
+            gensim_results_filepath (str): The path to the Gensim results file.
+
+        Returns:
+            None
+        """
+        df, relevance_dict = self.load_relevance_judgments(relevance_filepath)
+        
+        gensim_results = {}
+        with open(gensim_results_filepath, 'r') as f:
+            for line in f:
+                parts = line.strip().split()
+                query = parts[0]
+                docs = [doc.split(':')[0] for doc in parts[1].split(',')]
+                gensim_results[query] = docs
+        
+        queries = df['query'].tolist()
+        for query in queries:
+            retrieved_docs = gensim_results[query]
+            relevant_docs = relevance_dict.get(query)
+            M = len(relevant_docs)
+            p_at_m = self.precision_at_m(retrieved_docs, relevant_docs, M)
+            r_at_m = self.recall_at_m(retrieved_docs, relevant_docs, M)
+            ndcg_at_m_score = self.ndcg_at_m(retrieved_docs, relevant_docs, M)
+            
+            print(f"Query: {query} -> P@M: {p_at_m}, R@M: {r_at_m}, NDCG@M: {ndcg_at_m_score}")
+
