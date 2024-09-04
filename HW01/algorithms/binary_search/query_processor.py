@@ -65,7 +65,6 @@ class QueryProcessor:
         tokens = word_tokenize(query)
         tokens = self.processor.to_lowercase(tokens)
         tokens = self.processor.remove_punctuation(tokens)
-        tokens = self.processor.remove_non_ascii(tokens)
         tokens = self.processor.remove_stopwords(tokens)
         tokens = self.processor.stem_verbs(tokens)
         return tokens

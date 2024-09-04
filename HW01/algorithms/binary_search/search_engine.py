@@ -42,20 +42,3 @@ class SearchEngine:
         self.binary_search.generate_results_file(queries_df, self.inverted_index, output_file)
         logger.info(f"Results file generated: {output_file}")
 
-def main():
-    """
-    Main function to orchestrate the query processing and search operations.
-    """
-    query_processor = QueryProcessor()
-    queries_df = query_processor.process_queries()
-
-    search_engine = SearchEngine()
-    output_file = "BSII-AND-queries_result.txt"
-    search_engine.generate_results_file(queries_df, output_file)
-
-    logger.info(f"Results file content:")
-    with open(output_file, 'r') as f:
-        print(f.read())
-
-if __name__ == "__main__":
-    main()

@@ -7,10 +7,21 @@ from algorithms.binary_search.text_processor import TextProcessor
 
 class InvertedIndex:
     def __init__(self):
+        """
+        Initializes the InvertedIndex class.
+
+        Sets up the logger and creates an instance of TextProcessor.
+        """
         self.logger = self.setup_logger()
         self.text_processor = TextProcessor()
 
     def setup_logger(self):
+        """
+        Sets up and configures the logger for the class.
+
+        Returns:
+            logging.Logger: Configured logger instance.
+        """
         logger = logging.getLogger('InvertedIndex')
         logger.setLevel(logging.INFO)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -26,6 +37,15 @@ class InvertedIndex:
         return logger
 
     def apply_vectorizer_and_process(self, dataFrame: pd.DataFrame) -> pd.DataFrame:
+        """
+        Applies vectorization to the input DataFrame and processes the result.
+
+        Args:
+            dataFrame (pd.DataFrame): Input DataFrame containing 'text' and 'identifier' columns.
+
+        Returns:
+            pd.DataFrame: Processed DataFrame with vectorized text and identifier columns.
+        """
         self.logger.info("Applying vectorizer and processing")
         start_time = time.time()
 
@@ -43,6 +63,16 @@ class InvertedIndex:
         return dataframe_to_return
 
     def inverted_index(self, dataFrame: pd.DataFrame, occurrences: bool = False) -> dict:
+        """
+        Creates an inverted index from the processed DataFrame.
+
+        Args:
+            dataFrame (pd.DataFrame): Processed DataFrame from apply_vectorizer_and_process method.
+            occurrences (bool, optional): Whether to include occurrence counts in the index. Defaults to False.
+
+        Returns:
+            dict: Inverted index dictionary.
+        """
         self.logger.info("Creating inverted index")
         start_time = time.time()
 
@@ -65,6 +95,13 @@ class InvertedIndex:
         return inverted_index_dicc
 
     def save_inverted_index(self, inverted_index: dict, filename: str = "inverted_index_without_ocurrences.json"):
+        """
+        Saves the inverted index to a JSON file.
+
+        Args:
+            inverted_index (dict): Inverted index to be saved.
+            filename (str, optional): Name of the file to save the index. Defaults to "inverted_index_without_ocurrences.json".
+        """
         self.logger.info(f"Saving inverted index to {filename}")
         try:
             with open(filename, 'w') as file:
@@ -73,7 +110,20 @@ class InvertedIndex:
         except Exception as e:
             self.logger.error(f"Error saving inverted index to {filename}: {e}")
 
-    def inverted_index_complete_pipeline(self, directory: str = "data/docs-raw-texts/", occurrences: bool = False) -> dict:
+    def inverted_index_complete_pipeline(self, directory: str = "data/docs-raw-texts/", occurrences: bool = False, filename: str = "inverted_index_without_ocurrences.json") -> dict:
+        """
+        Executes the complete inverted index creation pipeline.
+
+        This method processes the texts, creates the inverted index, and saves it to a file.
+
+        Args:
+            directory (str, optional): Directory containing the raw text files. Defaults to "data/docs-raw-texts/".
+            occurrences (bool, optional): Whether to include occurrence counts in the index. Defaults to False.
+            filename (str, optional): Name of the file to save the index. Defaults to "inverted_index_without_ocurrences.json".
+
+        Returns:
+            dict: Created inverted index.
+        """
         self.logger.info("Starting complete inverted index pipeline")
         overall_start_time = time.time()
 
@@ -87,7 +137,7 @@ class InvertedIndex:
         inverted_index_to_return = self.inverted_index(vectorized_df, occurrences)
 
         self.logger.info("Step 4: Saving inverted index")
-        self.save_inverted_index(inverted_index_to_return)
+        self.save_inverted_index(inverted_index_to_return, filename)
 
         overall_end_time = time.time()
         self.logger.info(f"Completed inverted index pipeline. Total time taken: {overall_end_time - overall_start_time:.2f} seconds")
