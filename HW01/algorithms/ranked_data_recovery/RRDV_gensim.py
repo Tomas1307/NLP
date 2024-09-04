@@ -56,7 +56,7 @@ class RRDVGensim:
         except FileNotFoundError:
             self.logger.warning(f"File not found: {file_path}")
             self.logger.info("Creating new inverted index...")
-            self.inverted_index_occurrences = self.inverted_index.inverted_index_complete_pipeline(occurrences=True)
+            self.inverted_index_occurrences = self.inverted_index.inverted_index_complete_pipeline(occurrences=True,filename=file_path)
             self.logger.info("New inverted index created successfully.")
             
 
@@ -146,6 +146,19 @@ class RRDVGensim:
 
         return similarity
     
+    def sorted_query(self, query_list):
+        resultado = []
+        
+        for item in query_list:
+            query, documentos_str = item.split(' ', 1)
+            documentos = documentos_str.split(',')
+            
+            documentos_ordenados = sorted(documentos, key=lambda x: float(x.split(':')[1]), reverse=True)
+            
+            resultado.append(f"{query} {','.join(documentos_ordenados)}")
+        
+        return resultado
+    
     
     def format_cosine_similarities(self, df_queries, df_texts):
         """
@@ -183,11 +196,13 @@ class RRDVGensim:
         formatted_output = []
         for query_id, result in results.items():
             formatted_output.append(f"{query_id} {result}")
+            
+        formatted_output = self.sorted_query(formatted_output)
 
         self.logger.info("Cosine similarities calculation completed.")
         return '\n'.join(formatted_output)
 
-    def process_and_save_results(self, output_filename: str = "GENSIM-consultas_resultado.txt"):
+    def process_and_save_results(self, output_filename: str = "results/GENSIM-consultas_resultado.txt"):
         """
         Process queries and texts, calculate cosine similarities, and save results to a file.
 
@@ -233,8 +248,3 @@ class RRDVGensim:
         total_time = end_time - start_time
         self.logger.info(f"100% complete - Results saved in {output_filename}")
         self.logger.info(f"Total processing time: {total_time:.2f} seconds")
-
-# Usage example
-if __name__ == "__main__":
-    rrdv = RRDVGensim()
-    rrdv.process_and_save_results()
