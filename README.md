@@ -5,7 +5,7 @@
 * Tomas Acosta Bernal - 202011237
 * Santiago Pardo - 202013025
 * Juan Esteban Cuellar Argotty - 202014258
-* Ayman
+* Ayman Benazzouz El Hri - 202424848
 
 # Estructura del Proyecto
 
