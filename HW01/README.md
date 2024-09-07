@@ -39,3 +39,12 @@ Los notebooks de prueba se encuentran en la carpeta test/. En estos notebooks se
 
 ### 7. Ejecución
 Los archivos .py que contienen las funciones definitivas y ejecutables de los notebooks estan en HW01 y se pueden ejecutar directamente sin problemas.
+
+### 8. Ejecutar Archivos
+
+Para poder ejecutar los archivos que estan por rutas se debe agregar a PYTHONPATH en variables de entorno la ruta ../HW01. Por ejemplo, en el caso de la ejecucion de las carpetas de mi computador HW01 se encuentra en este directorio:
+
+C:\Users\Rog\Desktop\Andes\10\Natural Language Processing\NLP\HW01
+
+Por lo tanto, esa ruta se debe agregar a variables de entorno.
+
