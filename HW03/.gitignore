@@ -1,0 +1,12 @@
+# Ignorar la carpeta data
+data/
+*.csv
+
+# Ignorar archivos temporales o backups
+*.log
+*.tmp
+*.bak
+
+# Ignorar otros archivos y carpetas temporales
+__pycache__/
+*.pyc
