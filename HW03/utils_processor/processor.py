@@ -28,6 +28,14 @@ class Processor:
             return [re.sub(r'[^\w\s]', '', word) for word in words if re.sub(r'[^\w\s]', '', word) != '']
         except Exception as e:
             print(f"Error on remove_punctuation: {e}")
+            
+    def split_words(self, words):
+        try:
+            # Reemplazar "_" con " " en todas las palabras
+            return [word.replace("_", " ") for word in words]
+        except Exception as e:
+            print(f"Error in split_words: {e}")
+                
 
     def words_to_numbers(self, words):
         try:
@@ -83,6 +91,44 @@ class Processor:
             # Stemming
             self.logger.info("Step 7/6: Stemming verbs")
             text = self.stem_verbs(text)
+
+            self.logger.info("Preprocessing pipeline completed")
+            return ' '.join(text)  # Devolver como string
+        except Exception as e:
+            self.logger.error(f"Error in preprocessing_pipeline: {e}")
+            print(f"Error on preprocessing_pipeline: {e}")
+            
+    
+    def preprocessing_pipeline_sentiments(self, text):
+        try:
+            self.logger.info("Starting preprocessing pipeline")
+            
+            # Tokenización
+            self.logger.info("Step 1/7: Tokenizing text")
+            text = word_tokenize(text)
+            
+            self.logger.info("Step 2/7: Tokenizing text")
+            text = self.split_words(text)
+
+            # Convertir a minúsculas
+            self.logger.info("Step 3/7: Converting to lowercase")
+            text = self.to_lowercase(text)
+
+            # Remover puntuación
+            self.logger.info("Step 4/7: Removing punctuation")
+            text = self.remove_punctuation(text)
+
+            # Convertir palabras a números
+            self.logger.info("Step 5/7: Converting words to numbers")
+            text = self.words_to_numbers(text)
+
+            # Reemplazar dígitos
+            self.logger.info("Step 6/7: Replacing digits")
+            text = [self.replace_digits(word) for word in text]
+
+            # Remover stopwords
+            self.logger.info("Step 7/7: Removing stopwords")
+            text = self.remove_stopwords(text)
 
             self.logger.info("Preprocessing pipeline completed")
             return ' '.join(text)  # Devolver como string
