@@ -129,6 +129,9 @@ class Processor:
             # Remover stopwords
             self.logger.info("Step 7/7: Removing stopwords")
             text = self.remove_stopwords(text)
+            
+            self.logger.info("Step 7/6: Stemming verbs")
+            text = self.stem_verbs(text)
 
             self.logger.info("Preprocessing pipeline completed")
             return ' '.join(text)  # Devolver como string
