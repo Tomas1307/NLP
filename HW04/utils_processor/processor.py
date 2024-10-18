@@ -258,3 +258,104 @@ class Processor:
         except Exception as e:
             self.logger.error(f"Error in preprocessing_pipeline: {e}")
             return text.split()  # Si hay un error, devuelve la lista tokenizada básica
+    
+    def split_text_with_overlap(self, text, chunk_size=150, overlap_size=25):
+        """
+        Splits the text into chunks of a specified size, with overlap between chunks, based on words.
+        
+        Args:
+            text (str): The input text to split.
+            chunk_size (int): The number of words in each chunk.
+            overlap_size (int): The number of overlapping words between chunks.
+            
+        Returns:
+            list: A list of text chunks.
+        """
+        words = text.split()  # Split the text into words
+        chunks = []
+        
+        for i in range(0, len(words), chunk_size - overlap_size):
+            chunk = words[i:i + chunk_size]  # Select the chunk of words
+            chunks.append(' '.join(chunk))  # Join the words to form the chunk as a string
+        
+        return chunks
+
+
+        
+            
+    def preprocessing_pipeline_as_chunks(self, text, index=None, total=None, chunk_size=150, overlap_size=25):
+        """
+        Executes the full preprocessing pipeline on the input text, dividing the text into chunks
+        of a specified length with overlap before processing each chunk.
+
+        The pipeline includes:
+        - Gutenberg licensing removal
+        - Tokenization
+        - Lowercase conversion
+        - Punctuation removal
+        - Word-to-number conversion
+        - Digit replacement
+        - Stopword removal
+        - Stemming
+
+        Args:
+            text (str): Input text to process.
+            index (int): Current index of the text being processed (for logging).
+            total (int): Total number of texts to process (for logging).
+            chunk_size (int): The length of each chunk (default 150).
+            overlap_size (int): The overlap size between chunks (default 25).
+
+        Returns:
+            list: A list of processed text chunks after completing the preprocessing pipeline.
+        """
+        try:
+            if index is not None and total is not None:
+                self.logger.info(f"Processing text {index + 1}/{total}")
+
+            # Step 1: Remove Project Gutenberg Licensing
+            self.logger.info("Step 1/8: Cleaning Gutenberg text")
+            text = self.clean_gutenberg_text(text)
+            
+            # Step 2: Divide text into chunks with overlap
+            self.logger.info("Step 2/8: Splitting text into chunks")
+            chunks = self.split_text_with_overlap(text, chunk_size, overlap_size)
+            
+            processed_chunks = []
+            
+            for chunk in chunks:
+                # Step 3: Tokenization
+                self.logger.info("Step 3/8: Tokenizing chunk")
+                words = word_tokenize(chunk)
+
+                # Step 4: Convert to lowercase
+                self.logger.info("Step 4/8: Converting to lowercase")
+                words = self.to_lowercase(words)
+                
+                # Step 5: Remove punctuation
+                self.logger.info("Step 5/8: Removing punctuation")
+                words = self.remove_punctuation(words)
+
+                # Step 6: Convert words to numbers
+                self.logger.info("Step 6/8: Converting words to numbers")
+                words = self.words_to_numbers(words)
+
+                # Step 7: Replace digits
+                self.logger.info("Step 7/8: Replacing digits")
+                words = [self.replace_digits(word) for word in words]
+
+                # Step 8: Remove stopwords
+                self.logger.info("Step 8/8: Removing stopwords")
+                words = self.remove_stopwords(words)
+
+                # Optional: Stemming
+                self.logger.info("Step 9: Stemming verbs")
+                words = self.stem_verbs(words)
+
+                # Join the processed chunk back into a string and add to the list
+                processed_chunks.append(' '.join(words))
+
+            self.logger.info("Preprocessing completed for all chunks")
+            return processed_chunks  # Devuelve una lista de fragmentos procesados
+        except Exception as e:
+            self.logger.error(f"Error in preprocessing_pipeline_as_chunks: {e}")
+            return []
