@@ -193,7 +193,7 @@ class Processor:
                 raise ValueError("Start of the Project Gutenberg ebook not found")
 
         except Exception as e:
-            self.logger.error(f"Error cleaning Gutenberg text: {e}")
+            #self.logger.error(f"Error cleaning Gutenberg text: {e}")
             return text
 
         
