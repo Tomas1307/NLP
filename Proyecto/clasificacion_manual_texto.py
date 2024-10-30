@@ -5,7 +5,7 @@ import pandas as pd
 
 # Ruta del archivo CSV
 csv_path = "data/textos/complete_text_data.csv"
-output_csv_path = "data/chistes_clasificados/clasificacion_chistes.csv"
+output_csv_path = "data/textos/chistes_clasificados/clasificacion_chistes.csv"
 
 # Cargar dataset de chistes
 df_texto = pd.read_csv(csv_path)
