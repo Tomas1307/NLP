@@ -44,6 +44,14 @@ laugh_scale.pack()
 
 # Función para guardar y mostrar siguiente imagen
 def save_and_next(label, nivel_risa):
+    """
+    Saves the current image classification to a CSV file and displays the next image in the list.
+    If all images have been reviewed, it disables the buttons and shows a completion message.
+
+    Args:
+        label (bool): Indicates if the image is funny (True) or not (False).
+        nivel_risa (int): The laughter level rating assigned to the image (1-5).
+    """
     global current_image_index
     # Guardar en CSV
     image_file = image_files[current_image_index]
@@ -62,6 +70,9 @@ def save_and_next(label, nivel_risa):
 
 # Función para mostrar la imagen actual
 def show_image():
+    """
+    Displays the current joke in the list with its ID and the review progress status.
+    """
     image_file = image_files[current_image_index]
     img_path = os.path.join(image_dir, image_file)
     img = Image.open(img_path)
@@ -73,6 +84,12 @@ def show_image():
 
 # Función de evento para calificación con teclas del 1 al 5
 def on_key_press(event):
+    """
+    Event handler for key presses to allow users to rate the joke using keys 1 to 5.
+    
+    Args:
+        event: The key press event capturing the user's input.
+    """
     if event.char in "12345":
         nivel_risa = int(event.char)
         save_and_next(label=True, nivel_risa=nivel_risa)

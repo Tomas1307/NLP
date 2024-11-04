@@ -39,6 +39,14 @@ laugh_scale.pack()
 
 # Función para guardar y mostrar el siguiente chiste
 def save_and_next(label, nivel_risa):
+    """
+    Saves the current joke classification to a CSV file and displays the next joke in the list.
+    If all jokes have been reviewed, it disables the buttons and shows a completion message.
+
+    Args:
+        label (bool): Indicates if the joke is funny (True) or not (False).
+        nivel_risa (int): The laughter level rating assigned to the joke (1-5).
+    """
     global current_text_index
     # Guardar en CSV
     chiste_id, chiste_text = texts[current_text_index]
@@ -56,12 +64,21 @@ def save_and_next(label, nivel_risa):
 
 # Función para mostrar el chiste actual
 def show_text():
+    """
+    Displays the current joke in the list with its ID and the review progress status.
+    """
     chiste_id, chiste_text = texts[current_text_index]
     chiste_label.config(text=chiste_text)
     status_label.config(text=f"Chiste {chiste_id} ({current_text_index + 1}/{len(texts)})")
 
 # Función de evento para calificación con teclas del 1 al 5
 def on_key_press(event):
+    """
+    Event handler for key presses to allow users to rate the joke using keys 1 to 5.
+    
+    Args:
+        event: The key press event capturing the user's input.
+    """
     if event.char in "12345":
         nivel_risa = int(event.char)
         save_and_next(label=True, nivel_risa=nivel_risa)
