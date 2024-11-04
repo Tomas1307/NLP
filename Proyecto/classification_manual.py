@@ -43,12 +43,11 @@ laugh_scale = Scale(root, from_=1, to=5, orient="horizontal", label="Nivel de ri
 laugh_scale.pack()
 
 # Función para guardar y mostrar siguiente imagen
-def save_and_next(label):
+def save_and_next(label, nivel_risa):
     global current_image_index
     # Guardar en CSV
     image_file = image_files[current_image_index]
     image_id = os.path.splitext(image_file)[0]  # Obtener el ID sin la extensión
-    nivel_risa = laugh_scale.get() if label else 0
     df.loc[len(df)] = [image_id, image_file, label, nivel_risa]
     df.to_csv(csv_path, index=False)
     
@@ -66,17 +65,26 @@ def show_image():
     image_file = image_files[current_image_index]
     img_path = os.path.join(image_dir, image_file)
     img = Image.open(img_path)
-    img.thumbnail((400, 400))
+    img.thumbnail((800, 800))
     img = ImageTk.PhotoImage(img)
     image_label.config(image=img)
     image_label.image = img
     status_label.config(text=f"Mostrando: {image_file} ({current_image_index + 1}/{len(image_files)})")
 
+# Función de evento para calificación con teclas del 1 al 5
+def on_key_press(event):
+    if event.char in "12345":
+        nivel_risa = int(event.char)
+        save_and_next(label=True, nivel_risa=nivel_risa)
+
 # Botones de clasificación
-yes_button = Button(root, text="Gracioso", command=lambda: save_and_next(True))
+yes_button = Button(root, text="Gracioso", command=lambda: save_and_next(True, laugh_scale.get()))
 yes_button.pack(side="left")
-no_button = Button(root, text="No gracioso", command=lambda: save_and_next(False))
+no_button = Button(root, text="No gracioso", command=lambda: save_and_next(False, 0))
 no_button.pack(side="right")
+
+# Asignar la función on_key_press a los eventos de teclado
+root.bind("<Key>", on_key_press)
 
 # Iniciar
 current_image_index = 0

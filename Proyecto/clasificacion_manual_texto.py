@@ -38,11 +38,10 @@ laugh_scale = Scale(root, from_=1, to=5, orient="horizontal", label="Nivel de ri
 laugh_scale.pack()
 
 # Función para guardar y mostrar el siguiente chiste
-def save_and_next(label):
+def save_and_next(label, nivel_risa):
     global current_text_index
     # Guardar en CSV
     chiste_id, chiste_text = texts[current_text_index]
-    nivel_risa = laugh_scale.get() if label else 0
     df_result.loc[len(df_result)] = [chiste_id, chiste_text, label, nivel_risa]
     df_result.to_csv(output_csv_path, index=False)
     
@@ -61,11 +60,20 @@ def show_text():
     chiste_label.config(text=chiste_text)
     status_label.config(text=f"Chiste {chiste_id} ({current_text_index + 1}/{len(texts)})")
 
+# Función de evento para calificación con teclas del 1 al 5
+def on_key_press(event):
+    if event.char in "12345":
+        nivel_risa = int(event.char)
+        save_and_next(label=True, nivel_risa=nivel_risa)
+
 # Botones de clasificación
-yes_button = Button(root, text="Gracioso", command=lambda: save_and_next(True))
+yes_button = Button(root, text="Gracioso", command=lambda: save_and_next(True, laugh_scale.get()))
 yes_button.pack(side="left", padx=20, pady=20)
-no_button = Button(root, text="No gracioso", command=lambda: save_and_next(False))
+no_button = Button(root, text="No gracioso", command=lambda: save_and_next(False, 0))
 no_button.pack(side="right", padx=20, pady=20)
+
+# Asignar la función on_key_press a los eventos de teclado
+root.bind("<Key>", on_key_press)
 
 # Iniciar
 current_text_index = 0
