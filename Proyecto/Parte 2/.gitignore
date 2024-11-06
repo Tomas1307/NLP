@@ -1,0 +1,19 @@
+# Ignorar la carpeta data
+data/
+*.csv
+*.xlsx
+*.png
+*.jpg
+
+# Ignorar archivos temporales o backups
+*.log
+*.tmp
+*.bak
+
+# Ignorar otros archivos y carpetas temporales
+__pycache__/
+*.pyc
+
+# Ignorar modelos creados
+*.modelos
+*.npy
